@@ -17,4 +17,6 @@ A new Flutter package project.
 }
 ```
 
+![Screenshot](https://github.com/pmcarlos/flutter_clean_Calendar/blob/master/calendar.gif)
+
 
