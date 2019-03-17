@@ -219,19 +219,28 @@ class _CalendarState extends State<Calendar> {
 
   Widget get expansionButtonRow {
     if (widget.isExpandable) {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Text(Utils.fullDayFormat(selectedDate)),
-          IconButton(
-            iconSize: 20.0,
-            padding: EdgeInsets.all(0.0),
-            onPressed: toggleExpanded,
-            icon: isExpanded
-                ? Icon(Icons.arrow_drop_up)
-                : Icon(Icons.arrow_drop_down),
+      return GestureDetector(
+        onTap: toggleExpanded,
+        child: Container(
+          color: Color.fromRGBO(0, 0, 0, 0.07),
+          height: 40,
+          margin: EdgeInsets.only(top: 8.0),
+          padding: EdgeInsets.all(0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              SizedBox(width: 40.0),
+              Text(Utils.fullDayFormat(selectedDate)),
+              IconButton(
+                iconSize: 20.0,
+                padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+                icon: isExpanded
+                    ? Icon(Icons.arrow_drop_up)
+                    : Icon(Icons.arrow_drop_down),
+              ),
+            ],
           ),
-        ],
+        ),
       );
     } else {
       return Container();
