@@ -2,13 +2,18 @@
 
 A new Flutter package project.
 
-## Getting Started
+## Properties
 
-This project is a starting point for a Dart
-[package](https://flutter.io/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+`{
+onDateSelected: function, //receives a DateTime
+onRangeSelected: function, //receives to, from as DateTime
+isExpandable: bool, //can expand
+dayBuilder: (BuildContext context, DateTime day) {}, //return inside a widget to render
+showArrows: bool, //show arrows to change month/week
+showTodayIcon: bool, //show today icon to focus calendar on today
+events: Map, //map of events to display bullets on each day with events
+selectedColor: Color, //set the circle background for selected day if not uses the primaryColor
+eventColor: Color, //set the event dot color, if not uses the accentColor
+}
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+`
