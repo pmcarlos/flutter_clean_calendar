@@ -13,7 +13,6 @@ class CalendarTile extends StatelessWidget {
   final Widget child;
   final Color selectedColor;
   final Color eventColor;
-  int eventCount = 0;
 
   CalendarTile(
       {this.onDateSelected,
@@ -40,6 +39,7 @@ class CalendarTile extends StatelessWidget {
         ),
       );
     } else {
+      int eventCount = 0;
       return InkWell(
         onTap: onDateSelected,
         child: Container(
