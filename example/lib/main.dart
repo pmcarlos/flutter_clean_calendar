@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_calendar/flutter_clean_calendar.dart';
 
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class CalendarScreen extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Gym App',
-      theme: ThemeData(
-        primaryColor: Colors.red,
-        accentColor: Colors.blue,
-      ),
-      home: MyHomePage(),
-    );
+  State<StatefulWidget> createState() {
+    return _CalendarScreenState();
   }
 }
 
-class MyHomePage extends StatefulWidget {
+class _CalendarScreenState extends State<CalendarScreen> {
+  void _handleNewDate(date) {
+    setState(() {
+      _selectedDay = date;
+      _selectedEvents = _events[_selectedDay] ?? [];
+    });
+  }
+
+  List _selectedEvents;
+  DateTime _selectedDay;
+
   final Map _events = {
     DateTime(2019, 3, 1): ['Event A', 'Event B', 'Event C'],
     DateTime(2019, 3, 4): ['Event A'],
@@ -39,30 +38,56 @@ class MyHomePage extends StatefulWidget {
   };
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
+  void initState() {
+    super.initState();
+    _selectedEvents = _events[_selectedDay] ?? [];
+  }
 
-class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Flutter Clean Calendar'),
-      ),
-      body: ListView(
-        children: <Widget>[
-          Container(
-            child: Calendar(
-                events: widget._events,
+      // appBar: AppBar(
+      //   backgroundColor: Theme.of(context).primaryColor,
+      //   title: Text('Calendario'),
+      // ),
+      body: SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: <Widget>[
+            Container(
+              child: Calendar(
+                events: _events,
                 onRangeSelected: (range) =>
-                    print('Range is ${range.from}, ${range.to}'),
-                onDateSelected: (DateTime date) => print('Selected date $date'),
+                    print("Range is ${range.from}, ${range.to}"),
+                onDateSelected: (date) => _handleNewDate(date),
                 isExpandable: true,
                 showTodayIcon: true,
-                selectedColor: Colors.red,
-                eventColor: Colors.blue),
-          ),
-        ],
+              ),
+            ),
+            _buildEventList()
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildEventList() {
+    return Expanded(
+      child: ListView.builder(
+        itemBuilder: (BuildContext context, int index) => Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(width: 1.5, color: Colors.black12),
+                ),
+              ),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 0.0, vertical: 4.0),
+              child: ListTile(
+                title: Text(_selectedEvents[index].toString()),
+                onTap: () {},
+              ),
+            ),
+        itemCount: _selectedEvents.length,
       ),
     );
   }

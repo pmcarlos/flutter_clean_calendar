@@ -7,6 +7,7 @@ class CalendarTile extends StatelessWidget {
   final String dayOfWeek;
   final bool isDayOfWeek;
   final bool isSelected;
+  final bool inMonth;
   final List<String> events;
   final TextStyle dayOfWeekStyles;
   final TextStyle dateStyles;
@@ -23,6 +24,7 @@ class CalendarTile extends StatelessWidget {
       this.dayOfWeekStyles,
       this.isDayOfWeek: false,
       this.isSelected: false,
+      this.inMonth: true,
       this.events,
       this.selectedColor,
       this.eventColor});
@@ -57,7 +59,10 @@ class CalendarTile extends StatelessWidget {
             children: <Widget>[
               Text(
                 Utils.formatDay(date).toString(),
-                style: TextStyle(fontSize: 14.0, fontWeight: FontWeight.w400),
+                style: TextStyle(
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.w400,
+                    color: inMonth ? Colors.black : Colors.grey),
               ),
               events != null && events.length > 0
                   ? Row(

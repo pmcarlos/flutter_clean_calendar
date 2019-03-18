@@ -159,6 +159,12 @@ class _CalendarState extends State<Calendar> {
 
     calendarDays.forEach(
       (day) {
+        if (day.hour > 0) {
+          day = day.toLocal();
+
+          day = day.subtract(new Duration(hours: day.hour));
+        }
+
         if (monthStarted && day.day == 01) {
           monthEnded = true;
         }
@@ -181,14 +187,14 @@ class _CalendarState extends State<Calendar> {
         } else {
           dayWidgets.add(
             CalendarTile(
-              selectedColor: widget.selectedColor,
-              eventColor: widget.eventColor,
-              events: widget.events[day],
-              onDateSelected: () => handleSelectedDateAndUserCallback(day),
-              date: day,
-              dateStyles: configureDateStyle(monthStarted, monthEnded),
-              isSelected: Utils.isSameDay(selectedDate, day),
-            ),
+                selectedColor: widget.selectedColor,
+                eventColor: widget.eventColor,
+                events: widget.events[day],
+                onDateSelected: () => handleSelectedDateAndUserCallback(day),
+                date: day,
+                dateStyles: configureDateStyle(monthStarted, monthEnded),
+                isSelected: Utils.isSameDay(selectedDate, day),
+                inMonth: day.month == selectedDate.month),
           );
         }
       },
@@ -343,12 +349,10 @@ class _CalendarState extends State<Calendar> {
   }
 
   void _onSwipeUp() {
-    print('swipeup');
     if (isExpanded) toggleExpanded();
   }
 
   void _onSwipeDown() {
-    print('swipedown');
     if (!isExpanded) toggleExpanded();
   }
 
@@ -377,6 +381,12 @@ class _CalendarState extends State<Calendar> {
   void handleSelectedDateAndUserCallback(DateTime day) {
     var firstDayOfCurrentWeek = Utils.firstDayOfWeek(day);
     var lastDayOfCurrentWeek = Utils.lastDayOfWeek(day);
+    if (_selectedDate.month > day.month) {
+      previousMonth();
+    }
+    if (_selectedDate.month < day.month) {
+      nextMonth();
+    }
     setState(() {
       _selectedDate = day;
       selectedWeeksDays =
