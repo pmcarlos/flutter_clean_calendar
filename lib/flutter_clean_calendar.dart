@@ -23,18 +23,19 @@ class Calendar extends StatefulWidget {
   final Map events;
   final Color selectedColor;
   final Color eventColor;
+  final Color eventDoneColor;
 
-  Calendar({
-    this.onDateSelected,
-    this.onRangeSelected,
-    this.isExpandable: false,
-    this.events,
-    this.dayBuilder,
-    this.showTodayIcon: true,
-    this.showArrows: true,
-    this.selectedColor,
-    this.eventColor,
-  });
+  Calendar(
+      {this.onDateSelected,
+      this.onRangeSelected,
+      this.isExpandable: false,
+      this.events,
+      this.dayBuilder,
+      this.showTodayIcon: true,
+      this.showArrows: true,
+      this.selectedColor,
+      this.eventColor,
+      this.eventDoneColor});
 
   @override
   _CalendarState createState() => _CalendarState();
@@ -146,6 +147,7 @@ class _CalendarState extends State<Calendar> {
           CalendarTile(
             selectedColor: widget.selectedColor,
             eventColor: widget.eventColor,
+            eventDoneColor: widget.eventDoneColor,
             events: widget.events[day],
             isDayOfWeek: true,
             dayOfWeek: day,
@@ -178,6 +180,7 @@ class _CalendarState extends State<Calendar> {
             CalendarTile(
               selectedColor: widget.selectedColor,
               eventColor: widget.eventColor,
+              eventDoneColor: widget.eventDoneColor,
               events: widget.events[day],
               child: this.widget.dayBuilder(context, day),
               date: day,
@@ -189,6 +192,7 @@ class _CalendarState extends State<Calendar> {
             CalendarTile(
                 selectedColor: widget.selectedColor,
                 eventColor: widget.eventColor,
+                eventDoneColor: widget.eventDoneColor,
                 events: widget.events[day],
                 onDateSelected: () => handleSelectedDateAndUserCallback(day),
                 date: day,

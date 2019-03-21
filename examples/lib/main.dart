@@ -14,27 +14,37 @@ class _CalendarScreenState extends State<CalendarScreen> {
       _selectedDay = date;
       _selectedEvents = _events[_selectedDay] ?? [];
     });
+    print(_selectedEvents);
   }
 
   List _selectedEvents;
   DateTime _selectedDay;
 
   final Map _events = {
-    DateTime(2019, 3, 1): ['Event A', 'Event B', 'Event C'],
-    DateTime(2019, 3, 4): ['Event A'],
-    DateTime(2019, 3, 5): ['Event B', 'Event C'],
-    DateTime(2019, 3, 13): ['Event A', 'Event B', 'Event C'],
-    DateTime(2019, 3, 15): [
-      'Event A',
-      'Event B',
-      'Event C',
-      'Event D',
-      'Event E',
-      'Event F',
-      'Event G'
+    DateTime(2019, 3, 1): [
+      {'name': 'Event A', 'isDone': true},
     ],
-    DateTime(2019, 2, 26): ['Event A', 'Event A', 'Event B'],
-    DateTime(2019, 2, 18): ['Event A', 'Event A', 'Event B'],
+    DateTime(2019, 3, 4): [
+      {'name': 'Event A', 'isDone': true},
+      {'name': 'Event B', 'isDone': true},
+    ],
+    DateTime(2019, 3, 5): [
+      {'name': 'Event A', 'isDone': true},
+      {'name': 'Event B', 'isDone': true},
+    ],
+    DateTime(2019, 3, 13): [
+      {'name': 'Event A', 'isDone': true},
+      {'name': 'Event B', 'isDone': true},
+      {'name': 'Event C', 'isDone': false},
+    ],
+    DateTime(2019, 3, 15): [
+      {'name': 'Event A', 'isDone': true},
+      {'name': 'Event B', 'isDone': true},
+      {'name': 'Event C', 'isDone': false},
+    ],
+    DateTime(2019, 3, 26): [
+      {'name': 'Event A', 'isDone': false},
+    ],
   };
 
   @override
@@ -56,13 +66,14 @@ class _CalendarScreenState extends State<CalendarScreen> {
           children: <Widget>[
             Container(
               child: Calendar(
-                events: _events,
-                onRangeSelected: (range) =>
-                    print("Range is ${range.from}, ${range.to}"),
-                onDateSelected: (date) => _handleNewDate(date),
-                isExpandable: true,
-                showTodayIcon: true,
-              ),
+                  events: _events,
+                  onRangeSelected: (range) =>
+                      print("Range is ${range.from}, ${range.to}"),
+                  onDateSelected: (date) => _handleNewDate(date),
+                  isExpandable: true,
+                  showTodayIcon: true,
+                  eventDoneColor: Colors.green,
+                  eventColor: Colors.grey),
             ),
             _buildEventList()
           ],
@@ -83,7 +94,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
               padding:
                   const EdgeInsets.symmetric(horizontal: 0.0, vertical: 4.0),
               child: ListTile(
-                title: Text(_selectedEvents[index].toString()),
+                title: Text(_selectedEvents[index]['name'].toString()),
                 onTap: () {},
               ),
             ),

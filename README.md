@@ -3,7 +3,7 @@
 Simple flutter calendar based on flutter_calendar package.
 You can pull up and down the calendar to show between weekly/monthly calendar.
 It shows the number of events for thats specific date.
-\*Working on list the events
+It shows the already Done events un other color
 
 ![Screenshot](https://github.com/pmcarlos/flutter_clean_Calendar/blob/master/calendar.gif)
 
@@ -19,7 +19,10 @@ It shows the number of events for thats specific date.
   events: Map, //map of events to display bullets on each day with events
   selectedColor: Color, //set the circle background for selected day if not uses the primaryColor
   eventColor: Color, //set the event dot color, if not uses the accentColor
+  eventDoneColor: Color, //set the event dot color for already Done events, if not uses the accentColor
 }
+
+event List<Map> // add isDone to each event to change color for done events
 ```
 
 Sample event data

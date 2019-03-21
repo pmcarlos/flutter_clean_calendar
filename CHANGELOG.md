@@ -1,3 +1,8 @@
+## [0.1.5]
+
+- Breaking Changes: events now should be a Map with a List of Maps and not Strings as 1.0.4
+- Added Done events so you can see diferent eventColors
+
 ## [0.1.4]
 
 - Fixed locale dates

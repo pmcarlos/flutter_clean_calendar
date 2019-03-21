@@ -8,26 +8,29 @@ class CalendarTile extends StatelessWidget {
   final bool isDayOfWeek;
   final bool isSelected;
   final bool inMonth;
-  final List<String> events;
+  final List<Map> events;
   final TextStyle dayOfWeekStyles;
   final TextStyle dateStyles;
   final Widget child;
   final Color selectedColor;
   final Color eventColor;
+  final Color eventDoneColor;
 
-  CalendarTile(
-      {this.onDateSelected,
-      this.date,
-      this.child,
-      this.dateStyles,
-      this.dayOfWeek,
-      this.dayOfWeekStyles,
-      this.isDayOfWeek: false,
-      this.isSelected: false,
-      this.inMonth: true,
-      this.events,
-      this.selectedColor,
-      this.eventColor});
+  CalendarTile({
+    this.onDateSelected,
+    this.date,
+    this.child,
+    this.dateStyles,
+    this.dayOfWeek,
+    this.dayOfWeekStyles,
+    this.isDayOfWeek: false,
+    this.isSelected: false,
+    this.inMonth: true,
+    this.events,
+    this.selectedColor,
+    this.eventColor,
+    this.eventDoneColor,
+  });
 
   Widget renderDateOrDayOfWeek(BuildContext context) {
     if (isDayOfWeek) {
@@ -77,9 +80,10 @@ class CalendarTile extends StatelessWidget {
                           height: 6.0,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: eventColor != null
-                                ? eventColor
-                                : Theme.of(context).accentColor,
+                            color: event['isDone']
+                                ? eventDoneColor ??
+                                    Theme.of(context).primaryColor
+                                : eventColor ?? Theme.of(context).accentColor,
                           ),
                         );
                       }).toList())
