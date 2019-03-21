@@ -3,8 +3,9 @@
 Simple flutter calendar based on flutter_calendar package.
 You can pull up and down the calendar to show between weekly/monthly calendar.
 It shows the number of events for thats specific date.
-It shows the already Done events un other color
+It shows the already Done events in other color
 
+![Screenshot](https://github.com/pmcarlos/flutter_clean_Calendar/blob/master/screenshot.png)
 ![Screenshot](https://github.com/pmcarlos/flutter_clean_Calendar/blob/master/calendar.gif)
 
 ## Properties
