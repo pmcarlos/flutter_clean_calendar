@@ -2,7 +2,7 @@ library flutter_clean_calendar;
 
 import 'package:flutter/material.dart';
 import 'package:date_utils/date_utils.dart';
-import 'package:simple_gesture_detector/simple_gesture_detector.dart';
+import './simple_gesture_detector.dart';
 import './calendar_tile.dart';
 
 typedef DayBuilder(BuildContext context, DateTime day);
