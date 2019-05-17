@@ -24,18 +24,23 @@ class Calendar extends StatefulWidget {
   final Color selectedColor;
   final Color eventColor;
   final Color eventDoneColor;
+  final DateTime initialDate;
+  final bool isExpanded;
 
-  Calendar(
-      {this.onDateSelected,
-      this.onRangeSelected,
-      this.isExpandable: false,
-      this.events,
-      this.dayBuilder,
-      this.showTodayIcon: true,
-      this.showArrows: true,
-      this.selectedColor,
-      this.eventColor,
-      this.eventDoneColor});
+  Calendar({
+    this.onDateSelected,
+    this.onRangeSelected,
+    this.isExpandable: false,
+    this.events,
+    this.dayBuilder,
+    this.showTodayIcon: true,
+    this.showArrows: true,
+    this.selectedColor,
+    this.eventColor,
+    this.eventDoneColor,
+    this.initialDate,
+    this.isExpanded = false,
+  });
 
   @override
   _CalendarState createState() => _CalendarState();
@@ -51,8 +56,12 @@ class _CalendarState extends State<Calendar> {
   String displayMonth;
   DateTime get selectedDate => _selectedDate;
 
+  
+
   void initState() {
     super.initState();
+    _selectedDate = widget?.initialDate ?? DateTime.now();
+    isExpanded = widget?.isExpanded ?? false;
     selectedMonthsDays = Utils.daysInMonth(_selectedDate);
     var firstDayOfCurrentWeek = Utils.firstDayOfWeek(_selectedDate);
     var lastDayOfCurrentWeek = Utils.lastDayOfWeek(_selectedDate);
