@@ -1,3 +1,8 @@
+## [1.0.1]
+
+- Ability to start the calendar with a date other than today
+- Ability to start the calendar expanded or not
+
 ## [0.1.5]
 
 - Breaking Changes: events now should be a Map with a List of Maps and not Strings as 1.0.4
