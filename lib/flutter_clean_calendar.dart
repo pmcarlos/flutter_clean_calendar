@@ -15,6 +15,7 @@ class Range {
 
 class Calendar extends StatefulWidget {
   final ValueChanged<DateTime> onDateSelected;
+  final ValueChanged<DateTime> onMonthChanged;
   final ValueChanged onRangeSelected;
   final bool isExpandable;
   final DayBuilder dayBuilder;
@@ -28,6 +29,7 @@ class Calendar extends StatefulWidget {
   final bool isExpanded;
 
   Calendar({
+    this.onMonthChanged,
     this.onDateSelected,
     this.onRangeSelected,
     this.isExpandable: false,
@@ -311,6 +313,10 @@ class _CalendarState extends State<Calendar> {
       selectedMonthsDays = Utils.daysInMonth(_selectedDate);
       displayMonth = Utils.formatMonth(_selectedDate);
     });
+
+    if (widget.onMonthChanged != null) {
+      widget.onMonthChanged(_selectedDate);
+    }
   }
 
   void previousMonth() {
@@ -322,6 +328,10 @@ class _CalendarState extends State<Calendar> {
       selectedMonthsDays = Utils.daysInMonth(_selectedDate);
       displayMonth = Utils.formatMonth(_selectedDate);
     });
+
+    if (widget.onMonthChanged != null) {
+      widget.onMonthChanged(_selectedDate);
+    }
   }
 
   void nextWeek() {
