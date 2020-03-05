@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:date_utils/date_utils.dart';
 import './simple_gesture_detector.dart';
 import './calendar_tile.dart';
+import 'event_dto.dart';
 
 typedef DayBuilder(BuildContext context, DateTime day);
 
@@ -21,7 +22,7 @@ class Calendar extends StatefulWidget {
   final DayBuilder dayBuilder;
   final bool showArrows;
   final bool showTodayIcon;
-  final Map events;
+  final Map<DateTime, List<EventDto>> events;
   final Color selectedColor;
   final Color eventColor;
   final Color eventDoneColor;
