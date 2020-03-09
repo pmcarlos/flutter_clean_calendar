@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:date_utils/date_utils.dart';
+import "package:intl/intl.dart";
 
 class CalendarTile extends StatelessWidget {
   final VoidCallback onDateSelected;
@@ -13,6 +14,7 @@ class CalendarTile extends StatelessWidget {
   final TextStyle dateStyles;
   final Widget child;
   final Color selectedColor;
+  final Color todayColor;
   final Color eventColor;
   final Color eventDoneColor;
 
@@ -28,6 +30,7 @@ class CalendarTile extends StatelessWidget {
     this.inMonth: true,
     this.events,
     this.selectedColor,
+    this.todayColor,
     this.eventColor,
     this.eventDoneColor,
   });
@@ -44,51 +47,33 @@ class CalendarTile extends StatelessWidget {
         ),
       );
     } else {
-      int eventCount = 0;
       return InkWell(
         onTap: onDateSelected,
-        child: Container(
-          decoration: isSelected
-              ? BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: selectedColor != null
-                      ? selectedColor
-                      : Theme.of(context).primaryColor,
-                )
-              : BoxDecoration(),
-          alignment: Alignment.center,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                Utils.formatDay(date).toString(),
-                style: TextStyle(
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.w400,
-                    color: inMonth ? Colors.black : Colors.grey),
-              ),
-              events != null && events.length > 0
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: events.map((event) {
-                        eventCount++;
-                        if (eventCount > 3) return Container();
-                        return Container(
-                          margin:
-                              EdgeInsets.only(left: 2.0, right: 2.0, top: 3.0),
-                          width: 6.0,
-                          height: 6.0,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: event['isDone']
-                                ? eventDoneColor ??
-                                    Theme.of(context).primaryColor
-                                : eventColor ?? Theme.of(context).accentColor,
-                          ),
-                        );
-                      }).toList())
-                  : Container(),
-            ],
+        child: Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Container(
+            decoration: isSelected
+                ? BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: selectedColor != null
+                        ? Utils.isSameDay(this.date, DateTime.now()) ? Colors.red : selectedColor
+                        : Theme.of(context).primaryColor,
+                  )
+                : BoxDecoration(),
+            alignment: Alignment.center,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  DateFormat("d").format(date),
+                  // Utils.formatDay(date)..toString(),
+                  style: TextStyle(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w400,
+                      color: isSelected ? Colors.white : Utils.isSameDay(this.date, DateTime.now()) ? todayColor : inMonth ? Colors.black : Colors.grey),
+                ),
+              ],
+            ),
           ),
         ),
       );

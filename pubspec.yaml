@@ -10,7 +10,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  date_utils: ^0.1.0+2
+  date_utils:
 
 dev_dependencies:
   flutter_test:

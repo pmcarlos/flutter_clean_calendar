@@ -20,6 +20,7 @@ It shows the already Done events in other color
   showTodayIcon: bool, //show today icon to focus calendar on today
   events: Map, //map of events to display bullets on each day with events
   selectedColor: Color, //set the circle background for selected day if not uses the primaryColor
+  todayColor: Color, //set the font color of todays date
   eventColor: Color, //set the event dot color, if not uses the accentColor
   eventDoneColor: Color, //set the event dot color for already Done events, if not uses the accentColor
 }
