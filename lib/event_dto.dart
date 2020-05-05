@@ -1,0 +1,3 @@
+class EventDto {
+  bool isDone;
+}

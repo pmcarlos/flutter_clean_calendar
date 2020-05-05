@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:date_utils/date_utils.dart';
 import './simple_gesture_detector.dart';
 import './calendar_tile.dart';
+import 'event_dto.dart';
 
 typedef DayBuilder(BuildContext context, DateTime day);
 
@@ -15,12 +16,13 @@ class Range {
 
 class Calendar extends StatefulWidget {
   final ValueChanged<DateTime> onDateSelected;
+  final ValueChanged<DateTime> onMonthChanged;
   final ValueChanged onRangeSelected;
   final bool isExpandable;
   final DayBuilder dayBuilder;
   final bool showArrows;
   final bool showTodayIcon;
-  final Map events;
+  final Map<DateTime, List<EventDto>> events;
   final Color selectedColor;
   final Color eventColor;
   final Color eventDoneColor;
@@ -28,6 +30,7 @@ class Calendar extends StatefulWidget {
   final bool isExpanded;
 
   Calendar({
+    this.onMonthChanged,
     this.onDateSelected,
     this.onRangeSelected,
     this.isExpandable: false,
@@ -311,6 +314,10 @@ class _CalendarState extends State<Calendar> {
       selectedMonthsDays = Utils.daysInMonth(_selectedDate);
       displayMonth = Utils.formatMonth(_selectedDate);
     });
+
+    if (widget.onMonthChanged != null) {
+      widget.onMonthChanged(_selectedDate);
+    }
   }
 
   void previousMonth() {
@@ -322,6 +329,10 @@ class _CalendarState extends State<Calendar> {
       selectedMonthsDays = Utils.daysInMonth(_selectedDate);
       displayMonth = Utils.formatMonth(_selectedDate);
     });
+
+    if (widget.onMonthChanged != null) {
+      widget.onMonthChanged(_selectedDate);
+    }
   }
 
   void nextWeek() {

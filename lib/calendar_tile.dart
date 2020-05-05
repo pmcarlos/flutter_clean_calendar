@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:date_utils/date_utils.dart';
 
+import 'event_dto.dart';
+
 class CalendarTile extends StatelessWidget {
   final VoidCallback onDateSelected;
   final DateTime date;
@@ -8,7 +10,7 @@ class CalendarTile extends StatelessWidget {
   final bool isDayOfWeek;
   final bool isSelected;
   final bool inMonth;
-  final List<Map> events;
+  final List<EventDto> events;
   final TextStyle dayOfWeekStyles;
   final TextStyle dateStyles;
   final Widget child;
@@ -80,7 +82,7 @@ class CalendarTile extends StatelessWidget {
                           height: 6.0,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: event['isDone']
+                            color: event.isDone == true
                                 ? eventDoneColor ??
                                     Theme.of(context).primaryColor
                                 : eventColor ?? Theme.of(context).accentColor,
