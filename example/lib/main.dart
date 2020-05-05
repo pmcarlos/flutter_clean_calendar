@@ -33,7 +33,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
   List _selectedEvents;
   DateTime _selectedDay;
 
-  final Map _events = {
+  final Map<DateTime, List> _events = {
     DateTime(2020, 5, 7): [
       {'name': 'Event A', 'isDone': true},
     ],

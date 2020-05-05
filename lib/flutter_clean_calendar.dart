@@ -6,7 +6,6 @@ import './simple_gesture_detector.dart';
 import './calendar_tile.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'event_dto.dart';
 
 typedef DayBuilder(BuildContext context, DateTime day);
 
@@ -24,7 +23,7 @@ class Calendar extends StatefulWidget {
   final DayBuilder dayBuilder;
   final bool hideArrows;
   final bool hideTodayIcon;
-  final Map<DateTime, List<EventDto>> events;
+  final Map<DateTime, List> events;
   final Color selectedColor;
   final Color todayColor;
   final Color eventColor;
