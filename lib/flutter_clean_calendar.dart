@@ -35,6 +35,9 @@ class Calendar extends StatefulWidget {
   final bool startOnMonday;
   final bool hideBottomBar;
   final TextStyle dayOfWeekStyle;
+  final TextStyle bottomBarTextStyle;
+  final Color bottomBarArrowColor;
+  final Color bottomBarColor;
 
   Calendar({
     this.onMonthChanged,
@@ -56,6 +59,9 @@ class Calendar extends StatefulWidget {
     this.locale = "en_US",
     this.startOnMonday = false,
     this.dayOfWeekStyle,
+    this.bottomBarTextStyle,
+    this.bottomBarArrowColor,
+    this.bottomBarColor,
   });
 
   @override
@@ -265,7 +271,7 @@ class _CalendarState extends State<Calendar> {
       return GestureDetector(
         onTap: toggleExpanded,
         child: Container(
-          color: Color.fromRGBO(0, 0, 0, 0.07),
+          color: widget.bottomBarColor ?? Color.fromRGBO(200, 200, 200, 0.2),
           height: 40,
           margin: EdgeInsets.only(top: 8.0),
           padding: EdgeInsets.all(0),
@@ -273,19 +279,22 @@ class _CalendarState extends State<Calendar> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               SizedBox(width: 40.0),
-              Text(Utils.fullDayFormat(selectedDate)),
+              Text(
+                Utils.fullDayFormat(selectedDate),
+                style: widget.bottomBarTextStyle ?? TextStyle(fontSize: 13),
+              ),
               IconButton(
                 onPressed: toggleExpanded,
-                iconSize: 20.0,
+                iconSize: 25.0,
                 padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
                 icon: isExpanded
                     ? Icon(
                         Icons.arrow_drop_up,
-                        color: widget.selectedColor,
+                        color: widget.bottomBarArrowColor ?? Colors.black,
                       )
                     : Icon(
                         Icons.arrow_drop_down,
-                        color: widget.selectedColor,
+                        color: widget.bottomBarArrowColor ?? Colors.black,
                       ),
               ),
             ],

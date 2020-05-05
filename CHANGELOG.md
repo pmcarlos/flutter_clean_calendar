@@ -4,6 +4,8 @@
 - Added more styling options
 - Ability to start month on Monday or Sunday. Sunday by default, you need to replace weekDays if changing this value
 - Ability to replace day of weeks when starting calendar on Monday 
+- Hide or show bottom bar and its color
+- Ability to change bottom bar color, arrow color and text style
 
 ## [1.0.1]
 
