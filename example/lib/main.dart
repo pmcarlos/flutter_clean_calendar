@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_calendar/flutter_clean_calendar.dart';
 
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Clean Calendar Demo',
+      home: CalendarScreen(),
+    );
+  }
+}
+
 class CalendarScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -20,29 +33,29 @@ class _CalendarScreenState extends State<CalendarScreen> {
   List _selectedEvents;
   DateTime _selectedDay;
 
-  final Map _events = {
-    DateTime(2019, 3, 1): [
+  final Map<DateTime, List> _events = {
+    DateTime(2020, 5, 7): [
       {'name': 'Event A', 'isDone': true},
     ],
-    DateTime(2019, 3, 4): [
-      {'name': 'Event A', 'isDone': true},
-      {'name': 'Event B', 'isDone': true},
-    ],
-    DateTime(2019, 3, 5): [
+    DateTime(2020, 5, 9): [
       {'name': 'Event A', 'isDone': true},
       {'name': 'Event B', 'isDone': true},
     ],
-    DateTime(2019, 3, 13): [
+    DateTime(2020, 5, 10): [
       {'name': 'Event A', 'isDone': true},
       {'name': 'Event B', 'isDone': true},
-      {'name': 'Event C', 'isDone': false},
     ],
-    DateTime(2019, 3, 15): [
+    DateTime(2020, 5, 13): [
       {'name': 'Event A', 'isDone': true},
       {'name': 'Event B', 'isDone': true},
       {'name': 'Event C', 'isDone': false},
     ],
-    DateTime(2019, 3, 26): [
+    DateTime(2020, 5, 25): [
+      {'name': 'Event A', 'isDone': true},
+      {'name': 'Event B', 'isDone': true},
+      {'name': 'Event C', 'isDone': false},
+    ],
+    DateTime(2020, 6, 6): [
       {'name': 'Event A', 'isDone': false},
     ],
   };
@@ -56,24 +69,28 @@ class _CalendarScreenState extends State<CalendarScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Theme.of(context).primaryColor,
-      //   title: Text('Calendario'),
-      // ),
       body: SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             Container(
               child: Calendar(
-                  events: _events,
-                  onRangeSelected: (range) =>
-                      print("Range is ${range.from}, ${range.to}"),
-                  onDateSelected: (date) => _handleNewDate(date),
-                  isExpandable: true,
-                  showTodayIcon: true,
-                  eventDoneColor: Colors.green,
-                  eventColor: Colors.grey),
+                startOnMonday: true,
+                weekDays: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+                events: _events,
+                onRangeSelected: (range) =>
+                    print("Range is ${range.from}, ${range.to}"),
+                onDateSelected: (date) => _handleNewDate(date),
+                isExpandable: true,
+                eventDoneColor: Colors.green,
+                selectedColor: Colors.pink,
+                todayColor: Colors.yellow,
+                eventColor: Colors.grey,
+                dayOfWeekStyle: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w800,
+                    fontSize: 11),
+              ),
             ),
             _buildEventList()
           ],
@@ -86,18 +103,17 @@ class _CalendarScreenState extends State<CalendarScreen> {
     return Expanded(
       child: ListView.builder(
         itemBuilder: (BuildContext context, int index) => Container(
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(width: 1.5, color: Colors.black12),
-                ),
-              ),
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 0.0, vertical: 4.0),
-              child: ListTile(
-                title: Text(_selectedEvents[index]['name'].toString()),
-                onTap: () {},
-              ),
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(width: 1.5, color: Colors.black12),
             ),
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 4.0),
+          child: ListTile(
+            title: Text(_selectedEvents[index]['name'].toString()),
+            onTap: () {},
+          ),
+        ),
         itemCount: _selectedEvents.length,
       ),
     );
