@@ -6,6 +6,7 @@ import './simple_gesture_detector.dart';
 import './calendar_tile.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'event_dto.dart';
 
 typedef DayBuilder(BuildContext context, DateTime day);
 
@@ -17,12 +18,13 @@ class Range {
 
 class Calendar extends StatefulWidget {
   final ValueChanged<DateTime> onDateSelected;
+  final ValueChanged<DateTime> onMonthChanged;
   final ValueChanged onRangeSelected;
   final bool isExpandable;
   final DayBuilder dayBuilder;
   final bool hideArrows;
   final bool hideTodayIcon;
-  final Map events;
+  final Map<DateTime, List<EventDto>> events;
   final Color selectedColor;
   final Color todayColor;
   final Color eventColor;
@@ -36,6 +38,7 @@ class Calendar extends StatefulWidget {
   final TextStyle dayOfWeekStyle;
 
   Calendar({
+    this.onMonthChanged,
     this.onDateSelected,
     this.onRangeSelected,
     this.hideBottomBar: false,
@@ -456,6 +459,9 @@ class _CalendarState extends State<Calendar> {
   void _launchDateSelectionCallback(DateTime day) {
     if (widget.onDateSelected != null) {
       widget.onDateSelected(day);
+    }
+    if (widget.onMonthChanged != null) {
+      widget.onMonthChanged(day);
     }
   }
 
