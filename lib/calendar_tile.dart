@@ -10,7 +10,7 @@ class CalendarTile extends StatelessWidget {
   final bool isSelected;
   final bool inMonth;
   final List<Map> events;
-  final TextStyle dayOfWeekStyles;
+  final TextStyle dayOfWeekStyle;
   final TextStyle dateStyles;
   final Widget child;
   final Color selectedColor;
@@ -24,7 +24,7 @@ class CalendarTile extends StatelessWidget {
     this.child,
     this.dateStyles,
     this.dayOfWeek,
-    this.dayOfWeekStyles,
+    this.dayOfWeekStyle,
     this.isDayOfWeek: false,
     this.isSelected: false,
     this.inMonth: true,
@@ -42,21 +42,24 @@ class CalendarTile extends StatelessWidget {
           alignment: Alignment.center,
           child: new Text(
             dayOfWeek,
-            style: dayOfWeekStyles,
+            style: dayOfWeekStyle,
           ),
         ),
       );
     } else {
+      int eventCount = 0;
       return InkWell(
         onTap: onDateSelected,
         child: Padding(
-          padding: const EdgeInsets.all(4.0),
+          padding: const EdgeInsets.all(1.0),
           child: Container(
             decoration: isSelected
                 ? BoxDecoration(
                     shape: BoxShape.circle,
                     color: selectedColor != null
-                        ? Utils.isSameDay(this.date, DateTime.now()) ? Colors.red : selectedColor
+                        ? Utils.isSameDay(this.date, DateTime.now())
+                            ? Colors.red
+                            : selectedColor
                         : Theme.of(context).primaryColor,
                   )
                 : BoxDecoration(),
@@ -66,12 +69,36 @@ class CalendarTile extends StatelessWidget {
               children: <Widget>[
                 Text(
                   DateFormat("d").format(date),
-                  // Utils.formatDay(date)..toString(),
                   style: TextStyle(
                       fontSize: 14.0,
                       fontWeight: FontWeight.w400,
-                      color: isSelected ? Colors.white : Utils.isSameDay(this.date, DateTime.now()) ? todayColor : inMonth ? Colors.black : Colors.grey),
+                      color: isSelected
+                          ? Colors.white
+                          : Utils.isSameDay(this.date, DateTime.now())
+                              ? todayColor
+                              : inMonth ? Colors.black : Colors.grey),
                 ),
+                events != null && events.length > 0
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: events.map((event) {
+                          eventCount++;
+                          if (eventCount > 3) return Container();
+                          return Container(
+                            margin: EdgeInsets.only(
+                                left: 2.0, right: 2.0, top: 1.0),
+                            width: 5.0,
+                            height: 5.0,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: event['isDone']
+                                  ? eventDoneColor ??
+                                      Theme.of(context).primaryColor
+                                  : eventColor ?? Theme.of(context).accentColor,
+                            ),
+                          );
+                        }).toList())
+                    : Container(),
               ],
             ),
           ),
