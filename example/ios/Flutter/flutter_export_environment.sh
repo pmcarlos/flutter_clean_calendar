@@ -5,6 +5,7 @@ export "FLUTTER_APPLICATION_PATH=/Users/pmcarlos/Documents/Development/Flutter/f
 export "FLUTTER_TARGET=/Users/pmcarlos/Documents/Development/Flutter/flutter_clean_calendar/example/lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
 export "SYMROOT=${SOURCE_ROOT}/../build/ios"
+export "OTHER_LDFLAGS=$(inherited) -framework Flutter"
 export "FLUTTER_FRAMEWORK_DIR=/Users/pmcarlos/Development/flutter/bin/cache/artifacts/engine/ios"
 export "FLUTTER_BUILD_NAME=1.0.0"
 export "FLUTTER_BUILD_NUMBER=1"

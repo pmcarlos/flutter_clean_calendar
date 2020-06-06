@@ -392,10 +392,10 @@ class _CalendarState extends State<Calendar> {
   }
 
   void previousWeek() {
+    var firstDayOfCurrentWeek = _firstDayOfWeek(_selectedDate);
+    var lastDayOfCurrentWeek = _lastDayOfWeek(_selectedDate);
     setState(() {
       _selectedDate = Utils.previousWeek(_selectedDate);
-      var firstDayOfCurrentWeek = _firstDayOfWeek(_selectedDate);
-      var lastDayOfCurrentWeek = _lastDayOfWeek(_selectedDate);
       updateSelectedRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek);
       selectedWeekDays =
           Utils.daysInRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek)
@@ -448,12 +448,7 @@ class _CalendarState extends State<Calendar> {
   void handleSelectedDateAndUserCallback(DateTime day) {
     var firstDayOfCurrentWeek = _firstDayOfWeek(day);
     var lastDayOfCurrentWeek = _lastDayOfWeek(day);
-    if (_selectedDate.month > day.month) {
-      previousMonth();
-    }
-    if (_selectedDate.month < day.month) {
-      nextMonth();
-    }
+
     setState(() {
       _selectedDate = day;
       selectedWeekDays =
@@ -461,6 +456,12 @@ class _CalendarState extends State<Calendar> {
               .toList();
       selectedMonthsDays = _daysInMonth(day);
     });
+    if (_selectedDate.month > day.month) {
+      previousMonth();
+    }
+    if (_selectedDate.month < day.month) {
+      nextMonth();
+    }
     _launchDateSelectionCallback(day);
   }
 
@@ -474,8 +475,7 @@ class _CalendarState extends State<Calendar> {
   }
 
   _firstDayOfWeek(DateTime date) {
-    var day = new DateTime.utc(
-        _selectedDate.year, _selectedDate.month, _selectedDate.day, 12);
+    var day = new DateTime.utc(date.year, date.month, date.day, 12);
     return day.subtract(
         new Duration(days: day.weekday - (widget.startOnMonday ? 1 : 0)));
   }
@@ -487,7 +487,9 @@ class _CalendarState extends State<Calendar> {
   List<DateTime> _daysInMonth(DateTime month) {
     var first = Utils.firstDayOfMonth(month);
     var daysBefore = first.weekday;
-    var firstToDisplay = first.subtract(new Duration(days: daysBefore - 1));
+    var firstToDisplay = first
+        .subtract(new Duration(days: daysBefore - 1))
+        .subtract(new Duration(days: !widget.startOnMonday ? 1 : 0));
     var last = Utils.lastDayOfMonth(month);
 
     var daysAfter = 7 - last.weekday;
