@@ -38,7 +38,7 @@ class Calendar extends StatefulWidget {
   final TextStyle bottomBarTextStyle;
   final Color bottomBarArrowColor;
   final Color bottomBarColor;
-  final expandableDateFormat;
+  final String expandableDateFormat;
 
   Calendar({
     this.onMonthChanged,
