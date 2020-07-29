@@ -38,6 +38,7 @@ class Calendar extends StatefulWidget {
   final TextStyle bottomBarTextStyle;
   final Color bottomBarArrowColor;
   final Color bottomBarColor;
+  final expandableDateFormat;
 
   Calendar({
     this.onMonthChanged,
@@ -62,6 +63,7 @@ class Calendar extends StatefulWidget {
     this.bottomBarTextStyle,
     this.bottomBarArrowColor,
     this.bottomBarColor,
+    this.expandableDateFormat = "EEEE MMMM dd, yyyy",
   });
 
   @override
@@ -84,14 +86,14 @@ class _CalendarState extends State<Calendar> {
     isExpanded = widget?.isExpanded ?? false;
     selectedMonthsDays = _daysInMonth(_selectedDate);
     selectedWeekDays = Utils.daysInRange(
-            _firstDayOfWeek(_selectedDate), _lastDayOfWeek(_selectedDate))
+        _firstDayOfWeek(_selectedDate), _lastDayOfWeek(_selectedDate))
         .toList();
     initializeDateFormatting(widget.locale, null).then((_) => setState(() {
-          var monthFormat =
-              DateFormat("MMMM yyyy", widget.locale).format(_selectedDate);
-          displayMonth =
-              "${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}";
-        }));
+      var monthFormat =
+      DateFormat("MMMM yyyy", widget.locale).format(_selectedDate);
+      displayMonth =
+      "${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}";
+    }));
   }
 
   Widget get nameAndIconRow {
@@ -171,9 +173,9 @@ class _CalendarState extends State<Calendar> {
   List<Widget> calendarBuilder() {
     List<Widget> dayWidgets = [];
     List<DateTime> calendarDays =
-        isExpanded ? selectedMonthsDays : selectedWeekDays;
+    isExpanded ? selectedMonthsDays : selectedWeekDays;
     widget.weekDays.forEach(
-      (day) {
+          (day) {
         dayWidgets.add(
           CalendarTile(
             selectedColor: widget.selectedColor,
@@ -198,7 +200,7 @@ class _CalendarState extends State<Calendar> {
     bool monthEnded = false;
 
     calendarDays.forEach(
-      (day) {
+          (day) {
         if (day.hour > 0) {
           day = day.toLocal();
           day = day.subtract(new Duration(hours: day.hour));
@@ -252,14 +254,14 @@ class _CalendarState extends State<Calendar> {
     if (isExpanded) {
       final TextStyle body1StyleDisabled = body1Style.copyWith(
           color: Color.fromARGB(
-        100,
-        body1Style.color.red,
-        body1Style.color.green,
-        body1Style.color.blue,
-      ));
+            100,
+            body1Style.color.red,
+            body1Style.color.green,
+            body1Style.color.blue,
+          ));
 
       dateStyles =
-          monthStarted && !monthEnded ? body1Style : body1StyleDisabled;
+      monthStarted && !monthEnded ? body1Style : body1StyleDisabled;
     } else {
       dateStyles = body1Style;
     }
@@ -280,7 +282,7 @@ class _CalendarState extends State<Calendar> {
             children: <Widget>[
               SizedBox(width: 40.0),
               Text(
-                DateFormat("EEEE MMMM dd, yyyy", widget.locale).format(_selectedDate),
+                DateFormat(widget.expandableDateFormat, widget.locale).format(_selectedDate),
                 style: widget.bottomBarTextStyle ?? TextStyle(fontSize: 13),
               ),
               IconButton(
@@ -289,13 +291,13 @@ class _CalendarState extends State<Calendar> {
                 padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
                 icon: isExpanded
                     ? Icon(
-                        Icons.arrow_drop_up,
-                        color: widget.bottomBarArrowColor ?? Colors.black,
-                      )
+                  Icons.arrow_drop_up,
+                  color: widget.bottomBarArrowColor ?? Colors.black,
+                )
                     : Icon(
-                        Icons.arrow_drop_down,
-                        color: widget.bottomBarArrowColor ?? Colors.black,
-                      ),
+                  Icons.arrow_drop_down,
+                  color: widget.bottomBarArrowColor ?? Colors.black,
+                ),
               ),
             ],
           ),
@@ -336,9 +338,9 @@ class _CalendarState extends State<Calendar> {
               .toList();
       selectedMonthsDays = _daysInMonth(_selectedDate);
       var monthFormat =
-          DateFormat("MMMM yyyy", widget.locale).format(_selectedDate);
+      DateFormat("MMMM yyyy", widget.locale).format(_selectedDate);
       displayMonth =
-          "${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}";
+      "${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}";
     });
 
     _launchDateSelectionCallback(_selectedDate);
@@ -352,9 +354,9 @@ class _CalendarState extends State<Calendar> {
       updateSelectedRange(firstDateOfNewMonth, lastDateOfNewMonth);
       selectedMonthsDays = _daysInMonth(_selectedDate);
       var monthFormat =
-          DateFormat("MMMM yyyy", widget.locale).format(_selectedDate);
+      DateFormat("MMMM yyyy", widget.locale).format(_selectedDate);
       displayMonth =
-          "${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}";
+      "${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}";
     });
     _launchDateSelectionCallback(_selectedDate);
   }
@@ -367,9 +369,9 @@ class _CalendarState extends State<Calendar> {
       updateSelectedRange(firstDateOfNewMonth, lastDateOfNewMonth);
       selectedMonthsDays = _daysInMonth(_selectedDate);
       var monthFormat =
-          DateFormat("MMMM yyyy", widget.locale).format(_selectedDate);
+      DateFormat("MMMM yyyy", widget.locale).format(_selectedDate);
       displayMonth =
-          "${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}";
+      "${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}";
     });
     _launchDateSelectionCallback(_selectedDate);
   }
@@ -384,9 +386,9 @@ class _CalendarState extends State<Calendar> {
           Utils.daysInRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek)
               .toList();
       var monthFormat =
-          DateFormat("MMMM yyyy", widget.locale).format(_selectedDate);
+      DateFormat("MMMM yyyy", widget.locale).format(_selectedDate);
       displayMonth =
-          "${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}";
+      "${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}";
     });
     _launchDateSelectionCallback(_selectedDate);
   }
@@ -401,9 +403,9 @@ class _CalendarState extends State<Calendar> {
           Utils.daysInRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek)
               .toList();
       var monthFormat =
-          DateFormat("MMMM yyyy", widget.locale).format(_selectedDate);
+      DateFormat("MMMM yyyy", widget.locale).format(_selectedDate);
       displayMonth =
-          "${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}";
+      "${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}";
     });
     _launchDateSelectionCallback(_selectedDate);
   }
@@ -520,7 +522,7 @@ class ExpansionCrossFade extends StatelessWidget {
         secondCurve: const Interval(0.0, 1.0, curve: Curves.fastOutSlowIn),
         sizeCurve: Curves.decelerate,
         crossFadeState:
-            isExpanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+        isExpanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
         duration: const Duration(milliseconds: 300),
       ),
     );
