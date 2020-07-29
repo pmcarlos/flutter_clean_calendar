@@ -280,7 +280,7 @@ class _CalendarState extends State<Calendar> {
             children: <Widget>[
               SizedBox(width: 40.0),
               Text(
-                Utils.fullDayFormat(selectedDate),
+                DateFormat("EEEE MMMM dd, yyyy", widget.locale).format(_selectedDate),
                 style: widget.bottomBarTextStyle ?? TextStyle(fontSize: 13),
               ),
               IconButton(
