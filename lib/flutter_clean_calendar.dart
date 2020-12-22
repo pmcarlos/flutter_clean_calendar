@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:date_utils/date_utils.dart';
 import './simple_gesture_detector.dart';
 import './calendar_tile.dart';
+import './clean_calendar_event.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -15,17 +16,62 @@ class Range {
   Range(this.from, this.to);
 }
 
+/// Clean Calndar's main class [Calendar]
+///
+/// This calls is responisble for controlling the look of the calnedar display as well
+/// as the action taken, when changing the month or tapping a date. It's higly configurable
+/// with its numerous properties.
+///
+/// [onDateSelected] is of type [ValueChanged<DateTime>] and it containes the callback function
+///     extecuted when tapping a date
+/// [onMonthChanged] is of type [ValueChanged<DateTime>] and it containes the callback function
+///     extecuted when changing to another month
+/// [onExpandStateChanged] is of type [ValueChanged<bool>] and it contains a callback function
+///     executed when the view changes to expanded or to condensed
+/// [onRangeSelected] contains a callback function of type [ValueChanged], that gets called on changes
+///     of the range (switch to next or previous week or month)
+/// [isExpandable] is a [bool]. With this parameter you can control, if the view can expand from week view
+///     to month view. Default is [false].
+/// [dayBuilder] can contain a [Widget]. If this property is not null (!= null), this widget will get used to
+///     render the calenar tiles (so you can customize the view)
+/// [hideArrows] is a bool. When set to [true] the arrows to navigate to the next or previous week/month in the
+///     top bar well get suppressed. Default is [false].
+/// [hideTodayIcon] is a bool. When set to [true] the dispaly of the Today-Icon (button to navigate to today) in the
+///     top bar well get suppressed. Default is [false].
+/// [hideBottomBar] at the moment has no function. Default is [false].
+/// [events] are of type [Map<DateTime, List<CleanCalendarEvent>>]. This data structure containes the events to display
+/// [selctedColor] this is the color, applied to the circle on the selcted day
+/// [todayColor] this is the color of the date of today
+/// [todayButtonText] is a [String]. With this property you can set the caption of the today icon (button to navigate to today).
+///     If left empty, the calendar will use the string "Today".
+/// [eventColor] lets you optionally specify the color of the event (dot). If the [CleanCaendarEvents] property color is not set, the
+///     calendar will use this parameter.
+/// [eventDoneColor] with this property you can define the color of "done" events, that is events in the past.
+/// [initialDate] is of type [DateTime]. It can contain an optional start date. This is the day, that gets initially selected
+///     by the calendar. The default is to not set this parameter. Then the calendar uses [DateTime.now()]
+/// [isExpanded] is a bool. If is us set to [true], the calendar gets rendered in month view.
+/// [weekDays] contains a [List<String>] defining the names of the week days, so that it is possible to name them according
+///     to your current locale.
+/// [locale] is a [String]. This setting gets used to format dates according to the current locale.
+/// [startOnMonday] is a [bool]. This parameter allows the calendar to determine the first day of the week.
+/// [dayOfWeekStyle] is a [TextStyle] for styling the text of the weekday names in the top bar.
+/// [bottomBarTextStyle] is a [TextStyle], that sets the style of the text in the bottom bar.
+/// [bottomBarArrowColor] can set the [Color] of the arrow to expand/compress the calendar in the bottom bar.
+/// [bottomBarColor] sets the [Color] of the bottom bar
+/// [expandableDateFormat] defines the formatting of the date in the bottom bar
 class Calendar extends StatefulWidget {
   final ValueChanged<DateTime> onDateSelected;
   final ValueChanged<DateTime> onMonthChanged;
+  final ValueChanged<bool> onExpandStateChanged;
   final ValueChanged onRangeSelected;
   final bool isExpandable;
   final DayBuilder dayBuilder;
   final bool hideArrows;
   final bool hideTodayIcon;
-  final Map<DateTime, List> events;
+  final Map<DateTime, List<CleanCalendarEvent>> events;
   final Color selectedColor;
   final Color todayColor;
+  final String todayButtonText;
   final Color eventColor;
   final Color eventDoneColor;
   final DateTime initialDate;
@@ -44,6 +90,7 @@ class Calendar extends StatefulWidget {
     this.onMonthChanged,
     this.onDateSelected,
     this.onRangeSelected,
+    this.onExpandStateChanged,
     this.hideBottomBar: false,
     this.isExpandable: false,
     this.events,
@@ -52,18 +99,19 @@ class Calendar extends StatefulWidget {
     this.hideArrows: false,
     this.selectedColor,
     this.todayColor,
+    this.todayButtonText: 'Today',
     this.eventColor,
     this.eventDoneColor,
     this.initialDate,
     this.isExpanded = false,
-    this.weekDays = const ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-    this.locale = "en_US",
+    this.weekDays = const ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+    this.locale = 'en_US',
     this.startOnMonday = false,
     this.dayOfWeekStyle,
     this.bottomBarTextStyle,
     this.bottomBarArrowColor,
     this.bottomBarColor,
-    this.expandableDateFormat = "EEEE MMMM dd, yyyy",    
+    this.expandableDateFormat = 'EEEE MMMM dd, yyyy',
   });
 
   @override
@@ -77,7 +125,7 @@ class _CalendarState extends State<Calendar> {
   DateTime _selectedDate = DateTime.now();
   String currentMonth;
   bool isExpanded = false;
-  String displayMonth = "";
+  String displayMonth = '';
   DateTime get selectedDate => _selectedDate;
 
   void initState() {
@@ -90,9 +138,9 @@ class _CalendarState extends State<Calendar> {
         .toList();
     initializeDateFormatting(widget.locale, null).then((_) => setState(() {
           var monthFormat =
-              DateFormat("MMMM yyyy", widget.locale).format(_selectedDate);
+              DateFormat('MMMM yyyy', widget.locale).format(_selectedDate);
           displayMonth =
-              "${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}";
+              '${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}';
         }));
   }
 
@@ -117,7 +165,7 @@ class _CalendarState extends State<Calendar> {
 
     if (!widget.hideTodayIcon) {
       todayIcon = InkWell(
-        child: Text('Today'),
+        child: Text(widget.todayButtonText),
         onTap: resetToToday,
       );
     } else {
@@ -215,6 +263,7 @@ class _CalendarState extends State<Calendar> {
         }
 
         if (this.widget.dayBuilder != null) {
+          // Use the dayBuilder widget passed as parameter to render the date tile
           dayWidgets.add(
             CalendarTile(
               selectedColor: widget.selectedColor,
@@ -282,7 +331,8 @@ class _CalendarState extends State<Calendar> {
             children: <Widget>[
               SizedBox(width: 40.0),
               Text(
-                DateFormat(widget.expandableDateFormat, widget.locale).format(_selectedDate),
+                DateFormat(widget.expandableDateFormat, widget.locale)
+                    .format(_selectedDate),
                 style: widget.bottomBarTextStyle ?? TextStyle(fontSize: 13),
               ),
               IconButton(
@@ -327,6 +377,9 @@ class _CalendarState extends State<Calendar> {
     );
   }
 
+  /// The function [resetToToday] is called on tap on the Today button in the top
+  /// position of the screen. It re-caclulates the range of dates, so that the
+  /// month view or week view changes to a range containing the current day.
   void resetToToday() {
     _selectedDate = DateTime.now();
     var firstDayOfCurrentWeek = _firstDayOfWeek(_selectedDate);
@@ -338,9 +391,9 @@ class _CalendarState extends State<Calendar> {
               .toList();
       selectedMonthsDays = _daysInMonth(_selectedDate);
       var monthFormat =
-          DateFormat("MMMM yyyy", widget.locale).format(_selectedDate);
+          DateFormat('MMMM yyyy', widget.locale).format(_selectedDate);
       displayMonth =
-          "${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}";
+          '${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}';
     });
 
     _launchDateSelectionCallback(_selectedDate);
@@ -354,9 +407,9 @@ class _CalendarState extends State<Calendar> {
       updateSelectedRange(firstDateOfNewMonth, lastDateOfNewMonth);
       selectedMonthsDays = _daysInMonth(_selectedDate);
       var monthFormat =
-          DateFormat("MMMM yyyy", widget.locale).format(_selectedDate);
+          DateFormat('MMMM yyyy', widget.locale).format(_selectedDate);
       displayMonth =
-          "${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}";
+          '${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}';
     });
     _launchDateSelectionCallback(_selectedDate);
   }
@@ -369,9 +422,9 @@ class _CalendarState extends State<Calendar> {
       updateSelectedRange(firstDateOfNewMonth, lastDateOfNewMonth);
       selectedMonthsDays = _daysInMonth(_selectedDate);
       var monthFormat =
-          DateFormat("MMMM yyyy", widget.locale).format(_selectedDate);
+          DateFormat('MMMM yyyy', widget.locale).format(_selectedDate);
       displayMonth =
-          "${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}";
+          '${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}';
     });
     _launchDateSelectionCallback(_selectedDate);
   }
@@ -386,9 +439,9 @@ class _CalendarState extends State<Calendar> {
           Utils.daysInRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek)
               .toList();
       var monthFormat =
-          DateFormat("MMMM yyyy", widget.locale).format(_selectedDate);
+          DateFormat('MMMM yyyy', widget.locale).format(_selectedDate);
       displayMonth =
-          "${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}";
+          '${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}';
     });
     _launchDateSelectionCallback(_selectedDate);
   }
@@ -403,9 +456,9 @@ class _CalendarState extends State<Calendar> {
           Utils.daysInRange(firstDayOfCurrentWeek, lastDayOfCurrentWeek)
               .toList();
       var monthFormat =
-          DateFormat("MMMM yyyy", widget.locale).format(_selectedDate);
+          DateFormat('MMMM yyyy', widget.locale).format(_selectedDate);
       displayMonth =
-          "${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}";
+          '${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}';
     });
     _launchDateSelectionCallback(_selectedDate);
   }
@@ -443,7 +496,10 @@ class _CalendarState extends State<Calendar> {
 
   void toggleExpanded() {
     if (widget.isExpandable) {
-      setState(() => isExpanded = !isExpanded);
+      final newState = !isExpanded;
+      setState(() => isExpanded = newState);
+      if (widget.onExpandStateChanged != null)
+        widget.onExpandStateChanged(newState);
     }
   }
 
@@ -486,6 +542,9 @@ class _CalendarState extends State<Calendar> {
     return _firstDayOfWeek(date).add(new Duration(days: 7));
   }
 
+  /// The function [_daysInMonth] takes the parameter [month] (which is of type [DateTime])
+  /// and calculates then all the days to be displayed in month view based on it. It returns
+  /// all that days in a [List<DateTime].
   List<DateTime> _daysInMonth(DateTime month) {
     var first = Utils.firstDayOfMonth(month);
     var daysBefore = first.weekday;
