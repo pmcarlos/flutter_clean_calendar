@@ -76,14 +76,12 @@ class _CalendarState extends State<Calendar> {
   Iterable<DateTime> selectedWeekDays;
   DateTime _selectedDate = DateTime.now();
   String currentMonth;
-  bool isExpanded = false;
   String displayMonth = "";
   DateTime get selectedDate => _selectedDate;
 
   void initState() {
     super.initState();
     _selectedDate = widget?.initialDate ?? DateTime.now();
-    isExpanded = widget?.isExpanded ?? false;
     selectedMonthsDays = _daysInMonth(_selectedDate);
     selectedWeekDays = Utils.daysInRange(
             _firstDayOfWeek(_selectedDate), _lastDayOfWeek(_selectedDate))
@@ -103,11 +101,11 @@ class _CalendarState extends State<Calendar> {
 
     if (!widget.hideArrows) {
       leftArrow = IconButton(
-        onPressed: isExpanded ? previousMonth : previousWeek,
+        onPressed: widget.isExpanded ? previousMonth : previousWeek,
         icon: Icon(Icons.chevron_left),
       );
       rightArrow = IconButton(
-        onPressed: isExpanded ? nextMonth : nextWeek,
+        onPressed: widget.isExpanded ? nextMonth : nextWeek,
         icon: Icon(Icons.chevron_right),
       );
     } else {
@@ -173,7 +171,7 @@ class _CalendarState extends State<Calendar> {
   List<Widget> calendarBuilder() {
     List<Widget> dayWidgets = [];
     List<DateTime> calendarDays =
-        isExpanded ? selectedMonthsDays : selectedWeekDays;
+        widget.isExpanded ? selectedMonthsDays : selectedWeekDays;
     widget.weekDays.forEach(
       (day) {
         dayWidgets.add(
@@ -251,7 +249,7 @@ class _CalendarState extends State<Calendar> {
     TextStyle dateStyles;
     final TextStyle body1Style = Theme.of(context).textTheme.body1;
 
-    if (isExpanded) {
+    if (widget.isExpanded) {
       final TextStyle body1StyleDisabled = body1Style.copyWith(
           color: Color.fromARGB(
         100,
@@ -289,7 +287,7 @@ class _CalendarState extends State<Calendar> {
                 onPressed: toggleExpanded,
                 iconSize: 25.0,
                 padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
-                icon: isExpanded
+                icon: widget.isExpanded
                     ? Icon(
                         Icons.arrow_drop_up,
                         color: widget.bottomBarArrowColor ?? Colors.black,
@@ -319,7 +317,7 @@ class _CalendarState extends State<Calendar> {
           ExpansionCrossFade(
             collapsed: calendarGridView,
             expanded: calendarGridView,
-            isExpanded: isExpanded,
+            isExpanded: widget.isExpanded,
           ),
           expansionButtonRow
         ],
@@ -418,15 +416,15 @@ class _CalendarState extends State<Calendar> {
   }
 
   void _onSwipeUp() {
-    if (isExpanded) toggleExpanded();
+    if (widget.isExpanded) toggleExpanded();
   }
 
   void _onSwipeDown() {
-    if (!isExpanded) toggleExpanded();
+    if (!widget.isExpanded) toggleExpanded();
   }
 
   void _onSwipeRight() {
-    if (isExpanded) {
+    if (widget.isExpanded) {
       previousMonth();
     } else {
       previousWeek();
@@ -434,7 +432,7 @@ class _CalendarState extends State<Calendar> {
   }
 
   void _onSwipeLeft() {
-    if (isExpanded) {
+    if (widget.isExpanded) {
       nextMonth();
     } else {
       nextWeek();
@@ -443,7 +441,7 @@ class _CalendarState extends State<Calendar> {
 
   void toggleExpanded() {
     if (widget.isExpandable) {
-      setState(() => isExpanded = !isExpanded);
+      setState(() => widget.isExpanded = !widget.isExpanded);
     }
   }
 
