@@ -29,7 +29,7 @@ class Calendar extends StatefulWidget {
   final Color eventColor;
   final Color eventDoneColor;
   final DateTime initialDate;
-  final bool isExpanded;
+  bool isExpanded;
   final List<String> weekDays;
   final String locale;
   final bool startOnMonday;
