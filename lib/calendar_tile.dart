@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:date_utils/date_utils.dart';
+import 'package:flutter_clean_calendar/date_utils.dart';
 import "package:intl/intl.dart";
 
 class CalendarTile extends StatelessWidget {
@@ -76,7 +76,9 @@ class CalendarTile extends StatelessWidget {
                           ? Colors.white
                           : Utils.isSameDay(this.date, DateTime.now())
                               ? todayColor
-                              : inMonth ? Colors.black : Colors.grey),
+                              : inMonth
+                                  ? Colors.black
+                                  : Colors.grey),
                 ),
                 events != null && events.length > 0
                     ? Row(

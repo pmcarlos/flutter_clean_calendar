@@ -1,9 +1,9 @@
 library flutter_clean_calendar;
 
 import 'package:flutter/material.dart';
-import 'package:date_utils/date_utils.dart';
 import './simple_gesture_detector.dart';
 import './calendar_tile.dart';
+import './date_utils.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -63,7 +63,7 @@ class Calendar extends StatefulWidget {
     this.bottomBarTextStyle,
     this.bottomBarArrowColor,
     this.bottomBarColor,
-    this.expandableDateFormat = "EEEE MMMM dd, yyyy",    
+    this.expandableDateFormat = "EEEE MMMM dd, yyyy",
   });
 
   @override
@@ -247,7 +247,7 @@ class _CalendarState extends State<Calendar> {
 
   TextStyle configureDateStyle(monthStarted, monthEnded) {
     TextStyle dateStyles;
-    final TextStyle body1Style = Theme.of(context).textTheme.body1;
+    final TextStyle body1Style = Theme.of(context).textTheme.bodyText1;
 
     if (widget.isExpanded) {
       final TextStyle body1StyleDisabled = body1Style.copyWith(
@@ -280,7 +280,8 @@ class _CalendarState extends State<Calendar> {
             children: <Widget>[
               SizedBox(width: 40.0),
               Text(
-                DateFormat(widget.expandableDateFormat, widget.locale).format(_selectedDate),
+                DateFormat(widget.expandableDateFormat, widget.locale)
+                    .format(_selectedDate),
                 style: widget.bottomBarTextStyle ?? TextStyle(fontSize: 13),
               ),
               IconButton(
