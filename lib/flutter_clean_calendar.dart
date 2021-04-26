@@ -532,10 +532,15 @@ class _CalendarState extends State<Calendar> {
   }
 
   _firstDayOfWeek(DateTime date) {
-    var day = new DateTime.utc(
+    var day = DateTime.utc(
         _selectedDate.year, _selectedDate.month, _selectedDate.day, 12);
-    return day.subtract(
-        new Duration(days: day.weekday - (widget.startOnMonday ? 1 : 0)));
+    if (widget.startOnMonday == true) {
+      day = day.subtract(Duration(days: day.weekday - 1));
+    } else {
+      // if the selected day is a Sunday, then it is already the first day of week
+      day = day.weekday == 7 ? day : day.subtract(Duration(days: day.weekday));
+    }
+    return day;
   }
 
   _lastDayOfWeek(DateTime date) {
