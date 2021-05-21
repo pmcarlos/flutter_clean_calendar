@@ -5,12 +5,12 @@ author: "Carlos Peña <pmcarlosdev@gmail.com>"
 homepage: "https://github.com/pmcarlos/flutter_clean_calendar"
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  date_utils:
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
