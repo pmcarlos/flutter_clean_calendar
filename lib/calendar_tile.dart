@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_calendar/date_utils.dart';
+import './date_utils.dart';
 import './clean_calendar_event.dart';
 import "package:intl/intl.dart";
 
@@ -15,7 +15,7 @@ import "package:intl/intl.dart";
 /// [isDayOfWeek] is a [bool], that gets used to deiced, if the tile shoulöd display a weekday or a date
 /// [isSelected] is a [bool], that contains the information, if the current tile ist the selected day
 /// [inMonth] is a [bool], that contains the information, if the current day belongs to the selected month
-/// [events] contains a [List<CleanCalendarEvents>] with the exenets to display
+/// [events] contains a [List<CleanCalendarEvents>] of the events to display
 /// [dayOfWeekStyle] this property alloes to set a text style for the week days in the header row
 /// [dateStyles] this property alloes to set a text style for the date tiles
 /// [child] can contain a [Widget] that can be displayed. If tihs property is [null], the
@@ -69,8 +69,8 @@ class CalendarTile extends StatelessWidget {
       return new InkWell(
         child: new Container(
           alignment: Alignment.center,
-          child: new Text(
-            dayOfWeek!,
+          child: Text(
+            dayOfWeek ?? '',
             style: dayOfWeekStyle,
           ),
         ),
@@ -86,7 +86,7 @@ class CalendarTile extends StatelessWidget {
           child: Container(
             // If this tile is the selected date, draw a colored circle on it. The circle is filled with
             // the color passed with the selectedColor parameter or red color.
-            decoration: isSelected
+            decoration: isSelected && date != null
                 ? BoxDecoration(
                     shape: BoxShape.circle,
                     color: selectedColor != null
@@ -102,11 +102,11 @@ class CalendarTile extends StatelessWidget {
               children: <Widget>[
                 // Date display
                 Text(
-                  DateFormat("d").format(date!),
+                  date != null ? DateFormat("d").format(date!) : '',
                   style: TextStyle(
                       fontSize: 14.0,
                       fontWeight: FontWeight.w400,
-                      color: isSelected
+                      color: isSelected && this.date != null
                           ? Colors.white
                           : Utils.isSameDay(this.date!, DateTime.now())
                               ? todayColor
@@ -115,6 +115,7 @@ class CalendarTile extends StatelessWidget {
                                   : Colors
                                       .grey), // Grey color for previous or next months dates
                 ),
+                // Dots for the events
                 events != null && events!.length > 0
                     ? Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -128,20 +129,21 @@ class CalendarTile extends StatelessWidget {
                             width: 5.0,
                             height: 5.0,
                             decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              // If event is done (isDone == true) set the color of the dots to
-                              // the eventDoneColor (if given) otherwise use the primary color of
-                              // the theme
-                              // If the event is now donw yet, we use the given eventColor or the
-                              // color property of the CleanCalendarEvent. If both aren't set, then
-                              // the accent color of the theme get used.
-                              color: event.isDone
-                                  ? eventDoneColor ??
-                                      Theme.of(context).primaryColor
-                                  : event.color ??
-                                      eventColor ??
-                                      Theme.of(context).accentColor,
-                            ),
+                                shape: BoxShape.circle,
+                                // If event is done (isDone == true) set the color of the dots to
+                                // the eventDoneColor (if given) otherwise use the primary color of
+                                // the theme
+                                // If the event is now donw yet, we use the given eventColor or the
+                                // color property of the CleanCalendarEvent. If both aren't set, then
+                                // the accent color of the theme get used.
+                                color: (() {
+                                  if (event.isDone)
+                                    return eventDoneColor ??
+                                        Theme.of(context).primaryColor;
+                                  if (isSelected) return Colors.white;
+                                  return eventColor ??
+                                      Theme.of(context).accentColor;
+                                }())),
                           );
                         }).toList())
                     : Container(),
@@ -158,12 +160,12 @@ class CalendarTile extends StatelessWidget {
     // If a child widget was passed as parameter, this widget gets used to
     // be rendered to display weekday or date
     if (child != null) {
-      return new InkWell(
+      return InkWell(
         child: child,
         onTap: onDateSelected,
       );
     }
-    return new Container(
+    return Container(
       child: renderDateOrDayOfWeek(context),
     );
   }
