@@ -1,5 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_calendar/flutter_clean_calendar.dart';
+import 'package:flutter_clean_calendar/clean_calendar_event.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Clean Calendar Demo',
+      home: CalendarScreen(),
+    );
+  }
+}
 
 class CalendarScreen extends StatefulWidget {
   @override
@@ -9,97 +23,111 @@ class CalendarScreen extends StatefulWidget {
 }
 
 class _CalendarScreenState extends State<CalendarScreen> {
-  void _handleNewDate(date) {
-    setState(() {
-      _selectedDay = date;
-      _selectedEvents = _events[_selectedDay] ?? [];
-    });
-    print(_selectedEvents);
-  }
-
-  List _selectedEvents;
-  DateTime _selectedDay;
-
-  final Map _events = {
-    DateTime(2019, 3, 1): [
-      {'name': 'Event A', 'isDone': true},
+  final Map<DateTime, List<CleanCalendarEvent>> _events = {
+    DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day): [
+      CleanCalendarEvent('Event A',
+          startTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day, 10, 0),
+          endTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day, 12, 0),
+          description: 'A special event',
+          color: Colors.blue[700]),
     ],
-    DateTime(2019, 3, 4): [
-      {'name': 'Event A', 'isDone': true},
-      {'name': 'Event B', 'isDone': true},
+    DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 2):
+        [
+      CleanCalendarEvent('Event B',
+          startTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 10, 0),
+          endTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 12, 0),
+          color: Colors.orange),
+      CleanCalendarEvent('Event C',
+          startTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 14, 30),
+          endTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 17, 0),
+          color: Colors.pink),
     ],
-    DateTime(2019, 3, 5): [
-      {'name': 'Event A', 'isDone': true},
-      {'name': 'Event B', 'isDone': true},
-    ],
-    DateTime(2019, 3, 13): [
-      {'name': 'Event A', 'isDone': true},
-      {'name': 'Event B', 'isDone': true},
-      {'name': 'Event C', 'isDone': false},
-    ],
-    DateTime(2019, 3, 15): [
-      {'name': 'Event A', 'isDone': true},
-      {'name': 'Event B', 'isDone': true},
-      {'name': 'Event C', 'isDone': false},
-    ],
-    DateTime(2019, 3, 26): [
-      {'name': 'Event A', 'isDone': false},
+    DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 3):
+        [
+      CleanCalendarEvent('Event B',
+          startTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 10, 0),
+          endTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 12, 0),
+          color: Colors.orange),
+      CleanCalendarEvent('Event C',
+          startTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 14, 30),
+          endTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 17, 0),
+          color: Colors.pink),
+      CleanCalendarEvent('Event D',
+          startTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 14, 30),
+          endTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 17, 0),
+          color: Colors.amber),
+      CleanCalendarEvent('Event E',
+          startTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 14, 30),
+          endTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 17, 0),
+          color: Colors.deepOrange),
+      CleanCalendarEvent('Event F',
+          startTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 14, 30),
+          endTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 17, 0),
+          color: Colors.green),
+      CleanCalendarEvent('Event G',
+          startTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 14, 30),
+          endTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 17, 0),
+          color: Colors.indigo),
+      CleanCalendarEvent('Event H',
+          startTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 14, 30),
+          endTime: DateTime(DateTime.now().year, DateTime.now().month,
+              DateTime.now().day + 2, 17, 0),
+          color: Colors.brown),
     ],
   };
 
   @override
   void initState() {
     super.initState();
-    _selectedEvents = _events[_selectedDay] ?? [];
+    // Force selection of today on first load, so that the list of today's events gets shown.
+    _handleNewDate(DateTime(
+        DateTime.now().year, DateTime.now().month, DateTime.now().day));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Theme.of(context).primaryColor,
-      //   title: Text('Calendario'),
-      // ),
       body: SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            Container(
-              child: Calendar(
-                  events: _events,
-                  onRangeSelected: (range) =>
-                      print("Range is ${range.from}, ${range.to}"),
-                  onDateSelected: (date) => _handleNewDate(date),
-                  isExpandable: true,
-                  showTodayIcon: true,
-                  eventDoneColor: Colors.green,
-                  eventColor: Colors.grey),
-            ),
-            _buildEventList()
-          ],
+        child: Calendar(
+          startOnMonday: true,
+          weekDays: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
+          events: _events,
+          isExpandable: true,
+          eventDoneColor: Colors.green,
+          selectedColor: Colors.pink,
+          todayColor: Colors.blue,
+          eventColor: Colors.grey,
+          locale: 'de_DE',
+          todayButtonText: 'Heute',
+          isExpanded: true,
+          expandableDateFormat: 'EEEE, dd. MMMM yyyy',
+          dayOfWeekStyle: TextStyle(
+              color: Colors.black, fontWeight: FontWeight.w800, fontSize: 11),
         ),
       ),
     );
   }
 
-  Widget _buildEventList() {
-    return Expanded(
-      child: ListView.builder(
-        itemBuilder: (BuildContext context, int index) => Container(
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(width: 1.5, color: Colors.black12),
-                ),
-              ),
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 0.0, vertical: 4.0),
-              child: ListTile(
-                title: Text(_selectedEvents[index]['name'].toString()),
-                onTap: () {},
-              ),
-            ),
-        itemCount: _selectedEvents.length,
-      ),
-    );
+  void _handleNewDate(date) {
+    print('Date selected: $date');
   }
 }
