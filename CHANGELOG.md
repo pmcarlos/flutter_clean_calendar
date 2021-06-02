@@ -1,5 +1,7 @@
 ## [1.1.0]
 - Introduction of 'CleanCalendarEvent' class. This makes the former syntax of the 'Map' that stores the events incompatible.
+- Null safety
+- Requires flutter 2+
 
 ## [1.0.2]
 - Breaking Changes: Changed naming properties from show to hide, i.e. `hideArrows` instead of `showArrows`
