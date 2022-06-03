@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_calendar/flutter_clean_calendar.dart';
 import 'package:flutter_clean_calendar/clean_calendar_event.dart';
+import 'package:intl/intl.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  Intl.defaultLocale = 'ko_KR';
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.

@@ -40,6 +40,7 @@ class CalendarTile extends StatelessWidget {
   final Color? todayColor;
   final Color? eventColor;
   final Color? eventDoneColor;
+  final String? locale;
 
   CalendarTile({
     this.onDateSelected,
@@ -56,6 +57,7 @@ class CalendarTile extends StatelessWidget {
     this.todayColor,
     this.eventColor,
     this.eventDoneColor,
+    this.locale,
   });
 
   /// This function [renderDateOrDayOfWeek] renders the week view or the month view. It is
@@ -102,7 +104,7 @@ class CalendarTile extends StatelessWidget {
               children: <Widget>[
                 // Date display
                 Text(
-                  date != null ? DateFormat("d").format(date!) : '',
+                  date != null ? DateFormat("d", locale).format(date!) : '',
                   style: TextStyle(
                       fontSize: 14.0,
                       fontWeight: FontWeight.w400,

@@ -248,6 +248,7 @@ class _CalendarState extends State<Calendar> {
             events: widget.events![day],
             isDayOfWeek: true,
             dayOfWeek: day,
+            locale: widget.locale,
             dayOfWeekStyle: widget.dayOfWeekStyle ??
                 TextStyle(
                   color: widget.selectedColor,
@@ -288,6 +289,7 @@ class _CalendarState extends State<Calendar> {
               events: widget.events![day],
               child: widget.dayBuilder!(context, day),
               date: day,
+              locale: widget.locale,
               onDateSelected: () => handleSelectedDateAndUserCallback(day),
             ),
           );
@@ -301,6 +303,7 @@ class _CalendarState extends State<Calendar> {
                 events: widget.events![day],
                 onDateSelected: () => handleSelectedDateAndUserCallback(day),
                 date: day,
+                locale: widget.locale,
                 dateStyles: configureDateStyle(monthStarted, monthEnded),
                 isSelected: Utils.isSameDay(selectedDate, day),
                 inMonth: day.month == selectedDate.month),
