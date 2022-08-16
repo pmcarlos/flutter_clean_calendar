@@ -383,8 +383,6 @@ class _CalendarState extends State<Calendar> {
                   final CleanCalendarEvent event = _selectedEvents![index];
                   final String start =
                       DateFormat('HH:mm').format(event.startTime).toString();
-                  final String end =
-                      DateFormat('HH:mm').format(event.endTime).toString();
                   return Container(
                     height: 60.0,
                     child: InkWell(
@@ -434,10 +432,6 @@ class _CalendarState extends State<Calendar> {
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyText1),
-                                  Text(end,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1),
                                 ],
                               ),
                             ),
@@ -452,7 +446,7 @@ class _CalendarState extends State<Calendar> {
             : Container(),
       );
     } else {
-      // eventLiostBuilder is not null
+      // eventListBuilder is not null
       return widget.eventListBuilder!(context, _selectedEvents!);
     }
   }
