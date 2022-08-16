@@ -8,6 +8,7 @@ class CleanCalendarEvent {
   Color color;
   bool isAllDay;
   bool isDone;
+  String id;
 
   CleanCalendarEvent(this.summary,
       {this.description = '',
@@ -15,5 +16,7 @@ class CleanCalendarEvent {
       required this.startTime,
       this.color = Colors.blue,
       this.isAllDay = false,
-      this.isDone = false});
+      this.isDone = false,
+      required this.id
+      });
 }
