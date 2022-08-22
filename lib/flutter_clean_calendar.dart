@@ -622,8 +622,10 @@ class _CalendarState extends State<Calendar> {
     if (_selectedDate.month > day.month) {
       // Day in next year selected? Switch to next month.
       if (_selectedDate.year < day.year) {
+        print('1');
         nextMonth();
       } else {
+        print('2');
         previousMonth();
       }
       // Callback already fired in nextMonth() or previoisMonth(). Dont
@@ -635,8 +637,10 @@ class _CalendarState extends State<Calendar> {
     if (_selectedDate.month < day.month) {
       // Day in next last selected? Switch to next month.
       if (_selectedDate.year > day.year) {
+        print('3');
         previousMonth();
       } else {
+        print('4');
         nextMonth();
       }
       // Callback already fired in nextMonth() or previoisMonth(). Dont
@@ -653,6 +657,7 @@ class _CalendarState extends State<Calendar> {
     });
     // Check, if the callback was already executed before.
     if (isCallback) {
+      print('5');
       _launchDateSelectionCallback(_selectedDate);
     }
   }
