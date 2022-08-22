@@ -664,9 +664,11 @@ class _CalendarState extends State<Calendar> {
 
   void _launchDateSelectionCallback(DateTime day) {
     if (widget.onDateSelected != null) {
+      print('6');
       widget.onDateSelected!(day);
     }
     if (widget.onMonthChanged != null) {
+      print('7');
       widget.onMonthChanged!(day);
     }
   }
