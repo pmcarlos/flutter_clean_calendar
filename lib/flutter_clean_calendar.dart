@@ -650,7 +650,8 @@ class _CalendarState extends State<Calendar> {
       }
       // Callback already fired in nextMonth() or previoisMonth(). Dont
       // execute it again.
-      isCallback = false;
+      //isCallback = false;
+      isCallback = true;
     }
     setState(() {
       _selectedDate = day;
