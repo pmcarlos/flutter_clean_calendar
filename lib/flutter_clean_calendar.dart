@@ -475,6 +475,7 @@ class _CalendarState extends State<Calendar> {
   /// position of the screen. It re-caclulates the range of dates, so that the
   /// month view or week view changes to a range containing the current day.
   void resetToToday() {
+    print('reset to day');
     _selectedDate = DateTime.now();
     var firstDayOfCurrentWeek = _firstDayOfWeek(_selectedDate);
     var lastDayOfCurrentWeek = _lastDayOfWeek(_selectedDate);
@@ -497,6 +498,7 @@ class _CalendarState extends State<Calendar> {
   }
 
   void nextMonth() {
+    print('next month');
     setState(() {
       _selectedDate = Utils.nextMonth(_selectedDate);
       var firstDateOfNewMonth = Utils.firstDayOfMonth(_selectedDate);
@@ -515,6 +517,7 @@ class _CalendarState extends State<Calendar> {
   }
 
   void previousMonth() {
+    print('previous month');
     setState(() {
       _selectedDate = Utils.previousMonth(_selectedDate);
       var firstDateOfNewMonth = Utils.firstDayOfMonth(_selectedDate);
@@ -533,6 +536,7 @@ class _CalendarState extends State<Calendar> {
   }
 
   void nextWeek() {
+    print('nextWeek');
     setState(() {
       _selectedDate = Utils.nextWeek(_selectedDate);
       var firstDayOfCurrentWeek = _firstDayOfWeek(_selectedDate);
@@ -553,6 +557,7 @@ class _CalendarState extends State<Calendar> {
   }
 
   void previousWeek() {
+    print('previous week');
     setState(() {
       _selectedDate = Utils.previousWeek(_selectedDate);
       var firstDayOfCurrentWeek = _firstDayOfWeek(_selectedDate);
