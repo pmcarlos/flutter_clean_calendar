@@ -650,8 +650,7 @@ class _CalendarState extends State<Calendar> {
       }
       // Callback already fired in nextMonth() or previoisMonth(). Dont
       // execute it again.
-      //isCallback = false;
-      isCallback = true;
+      isCallback = false;
     }
     setState(() {
       _selectedDate = day;
@@ -662,10 +661,10 @@ class _CalendarState extends State<Calendar> {
       _selectedEvents = widget.events?[_selectedDate] ?? [];
     });
     // Check, if the callback was already executed before.
-    if (isCallback) {
-      print('5');
-      _launchDateSelectionCallback(_selectedDate);
-    }
+    // if (isCallback) {
+    //   print('5');
+    //   _launchDateSelectionCallback(_selectedDate);
+    // }
   }
 
   void _launchDateSelectionCallback(DateTime day) {
