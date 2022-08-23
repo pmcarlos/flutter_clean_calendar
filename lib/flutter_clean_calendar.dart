@@ -475,7 +475,6 @@ class _CalendarState extends State<Calendar> {
   /// position of the screen. It re-caclulates the range of dates, so that the
   /// month view or week view changes to a range containing the current day.
   void resetToToday() {
-    print('reset to day');
     _selectedDate = DateTime.now();
     var firstDayOfCurrentWeek = _firstDayOfWeek(_selectedDate);
     var lastDayOfCurrentWeek = _lastDayOfWeek(_selectedDate);
@@ -498,7 +497,6 @@ class _CalendarState extends State<Calendar> {
   }
 
   void nextMonth() {
-    print('next month');
     setState(() {
       _selectedDate = Utils.nextMonth(_selectedDate);
       var firstDateOfNewMonth = Utils.firstDayOfMonth(_selectedDate);
@@ -517,7 +515,6 @@ class _CalendarState extends State<Calendar> {
   }
 
   void previousMonth() {
-    print('previous month');
     setState(() {
       _selectedDate = Utils.previousMonth(_selectedDate);
       var firstDateOfNewMonth = Utils.firstDayOfMonth(_selectedDate);
@@ -536,7 +533,6 @@ class _CalendarState extends State<Calendar> {
   }
 
   void nextWeek() {
-    print('nextWeek');
     setState(() {
       _selectedDate = Utils.nextWeek(_selectedDate);
       var firstDayOfCurrentWeek = _firstDayOfWeek(_selectedDate);
@@ -557,7 +553,6 @@ class _CalendarState extends State<Calendar> {
   }
 
   void previousWeek() {
-    print('previous week');
     setState(() {
       _selectedDate = Utils.previousWeek(_selectedDate);
       var firstDayOfCurrentWeek = _firstDayOfWeek(_selectedDate);
@@ -627,10 +622,8 @@ class _CalendarState extends State<Calendar> {
     if (_selectedDate.month > day.month) {
       // Day in next year selected? Switch to next month.
       if (_selectedDate.year < day.year) {
-        print('1');
         nextMonth();
       } else {
-        print('2');
         previousMonth();
       }
       // Callback already fired in nextMonth() or previoisMonth(). Dont
@@ -642,10 +635,8 @@ class _CalendarState extends State<Calendar> {
     if (_selectedDate.month < day.month) {
       // Day in next last selected? Switch to next month.
       if (_selectedDate.year > day.year) {
-        print('3');
         previousMonth();
       } else {
-        print('4');
         nextMonth();
       }
       // Callback already fired in nextMonth() or previoisMonth(). Dont
@@ -660,6 +651,7 @@ class _CalendarState extends State<Calendar> {
       selectedMonthsDays = _daysInMonth(day);
       _selectedEvents = widget.events?[_selectedDate] ?? [];
     });
+    // todo kāpēc šis vispār vajadzīgs?
     // Check, if the callback was already executed before.
     // if (isCallback) {
     //   print('5');
@@ -669,11 +661,9 @@ class _CalendarState extends State<Calendar> {
 
   void _launchDateSelectionCallback(DateTime day) {
     if (widget.onDateSelected != null) {
-      print('6');
       widget.onDateSelected!(day);
     }
     if (widget.onMonthChanged != null) {
-      print('7');
       widget.onMonthChanged!(day);
     }
   }
