@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6fcde690-972e-42ac-a18f-e30d46cd22d6" name="Default Changelist" comment="" />
+    <list default="true" id="6fcde690-972e-42ac-a18f-e30d46cd22d6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,6 +52,49 @@
       <option name="presentableId" value="Default" />
       <updated>1660643907565</updated>
     </task>
+    <task id="LOCAL-00001" summary="changes for debuging">
+      <created>1661199020282</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1661199020282</updated>
+    </task>
+    <task id="LOCAL-00002" summary="changes for debuging">
+      <created>1661199547430</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1661199547430</updated>
+    </task>
+    <task id="LOCAL-00003" summary="changes for debuging">
+      <created>1661271061598</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1661271061598</updated>
+    </task>
+    <task id="LOCAL-00004" summary="changes for debuging">
+      <created>1661271824984</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1661271824984</updated>
+    </task>
+    <task id="LOCAL-00005" summary="changes for debuging">
+      <created>1661272210443</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1661272210443</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Hopefully fixed all bugs and removed prints()">
+      <created>1661273712527</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1661273712527</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -68,6 +113,12 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="changes for debuging" />
+    <MESSAGE value="Hopefully fixed all bugs and removed prints()" />
+    <option name="LAST_COMMIT_MESSAGE" value="Hopefully fixed all bugs and removed prints()" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
