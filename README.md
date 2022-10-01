@@ -1,5 +1,10 @@
 # flutter_clean_calendar
 
+# NOTE:
+Due to my current job I'm not able to maintain this project anymore, it's been an exciting journey and thanks to everyone who used it. 
+You can now use [fluter_neat_and_clean_calendar](https://github.com/rwbr/flutter_neat_and_clean_calendar) by @rwbr who is actively maintaining his project, his package was forked from this one so be sure everything in here would be supported and more
+You can find me on twitter as [@elcharliep](https://twitter.com/elcharliep)
+
 Simple flutter calendar based on flutter_calendar package.
 Thanks to @AppleEducate for his contributions.
 You can pull up and down the calendar to show between weekly/monthly calendar.
