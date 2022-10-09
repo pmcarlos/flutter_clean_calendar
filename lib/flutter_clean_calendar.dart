@@ -379,7 +379,7 @@ class _CalendarState extends State<Calendar> {
 
   Widget get eventList {
     if (widget.eventListBuilder == null) {
-      return Expanded(
+      return Container(
         child: _selectedEvents != null && _selectedEvents!.isNotEmpty
             ? ListView.builder(
                 padding: EdgeInsets.all(0.0),
