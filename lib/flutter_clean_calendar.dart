@@ -142,7 +142,6 @@ class _CalendarState extends State<Calendar> {
   DateTime get selectedDate => _selectedDate;
   List<CleanCalendarEvent>? _selectedEvents;
 
-  get buttonWidget => buttonWidget;
 
   void initState() {
     super.initState();
@@ -469,7 +468,7 @@ class _CalendarState extends State<Calendar> {
             isExpanded: isExpanded,
           ),
           expansionButtonRow,
-          //buttonWidget,
+          buttonWidget,
           eventList
         ],
       ),
