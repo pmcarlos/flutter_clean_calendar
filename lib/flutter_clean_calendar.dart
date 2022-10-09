@@ -94,6 +94,7 @@ class Calendar extends StatefulWidget {
   final Color? bottomBarArrowColor;
   final Color? bottomBarColor;
   final String? expandableDateFormat;
+  final Widget? buttonWidget;
 
   Calendar({
     this.onMonthChanged,
@@ -123,6 +124,7 @@ class Calendar extends StatefulWidget {
     this.bottomBarArrowColor,
     this.bottomBarColor,
     this.expandableDateFormat = 'EEEE MMMM dd, yyyy',
+    this.buttonWidget
   });
 
   @override
@@ -139,6 +141,8 @@ class _CalendarState extends State<Calendar> {
   String displayMonth = '';
   DateTime get selectedDate => _selectedDate;
   List<CleanCalendarEvent>? _selectedEvents;
+
+  get buttonWidget => buttonWidget;
 
   void initState() {
     super.initState();
@@ -375,76 +379,74 @@ class _CalendarState extends State<Calendar> {
 
   Widget get eventList {
     if (widget.eventListBuilder == null) {
-      return Expanded(
-        child: _selectedEvents != null && _selectedEvents!.isNotEmpty
-            ? ListView.builder(
-                padding: EdgeInsets.all(0.0),
-                itemBuilder: (BuildContext context, int index) {
-                  final CleanCalendarEvent event = _selectedEvents![index];
-                  final String start =
-                      DateFormat('HH:mm').format(event.startTime).toString();
-                  return Container(
-                    height: 60.0,
-                    child: InkWell(
-                      onTap: () {
-                        if (widget.onEventSelected != null) {
-                          widget.onEventSelected!(event);
-                        }
-                      },
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: <Widget>[
-                          Expanded(
-                            flex: 5,
-                            child: Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Container(
-                                color: event.color,
-                              ),
+      return _selectedEvents != null && _selectedEvents!.isNotEmpty
+          ? ListView.builder(
+              padding: EdgeInsets.all(0.0),
+              itemBuilder: (BuildContext context, int index) {
+                final CleanCalendarEvent event = _selectedEvents![index];
+                final String start =
+                    DateFormat('HH:mm').format(event.startTime).toString();
+                return Container(
+                  height: 60.0,
+                  child: InkWell(
+                    onTap: () {
+                      if (widget.onEventSelected != null) {
+                        widget.onEventSelected!(event);
+                      }
+                    },
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: <Widget>[
+                        Expanded(
+                          flex: 5,
+                          child: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Container(
+                              color: event.color,
                             ),
                           ),
-                          Expanded(
-                            flex: 75,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(event.summary,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .subtitle2),
-                                  Text(event.description)
-                                ],
-                              ),
+                        ),
+                        Expanded(
+                          flex: 75,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(event.summary,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .subtitle2),
+                                Text(event.description)
+                              ],
                             ),
                           ),
-                          Expanded(
-                            flex: 20,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(start,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText1),
-                                ],
-                              ),
+                        ),
+                        Expanded(
+                          flex: 20,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(start,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText1),
+                              ],
                             ),
-                          )
-                        ],
-                      ),
+                          ),
+                        )
+                      ],
                     ),
-                  );
-                },
-                itemCount: _selectedEvents!.length,
-              )
-            : Container(),
-      );
+                  ),
+                );
+              },
+              itemCount: _selectedEvents!.length,
+            )
+          : Container();
     } else {
       // eventListBuilder is not null
       return widget.eventListBuilder!(context, _selectedEvents!);
@@ -465,6 +467,7 @@ class _CalendarState extends State<Calendar> {
             isExpanded: isExpanded,
           ),
           expansionButtonRow,
+          buttonWidget,
           eventList
         ],
       ),
