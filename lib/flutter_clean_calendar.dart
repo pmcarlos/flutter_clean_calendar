@@ -407,6 +407,16 @@ class _CalendarState extends State<Calendar> {
                   final String start =
                       DateFormat('HH:mm').format(event.startTime).toString();
                   return Container(
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 5,
+                          blurRadius: 7,
+                          offset: Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
+                    ),
                     height: 60.0,
                     child: InkWell(
                       onTap: () {
