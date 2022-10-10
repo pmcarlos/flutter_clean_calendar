@@ -94,7 +94,7 @@ class Calendar extends StatefulWidget {
   final Color? bottomBarArrowColor;
   final Color? bottomBarColor;
   final String? expandableDateFormat;
-  final Widget? buttonWidget;
+  final Widget buttonWidget;
 
   Calendar({
     this.onMonthChanged,
@@ -124,7 +124,7 @@ class Calendar extends StatefulWidget {
     this.bottomBarArrowColor,
     this.bottomBarColor,
     this.expandableDateFormat = 'EEEE MMMM dd, yyyy',
-    this.buttonWidget
+    required this.buttonWidget
   });
 
   @override
@@ -141,8 +141,6 @@ class _CalendarState extends State<Calendar> {
   String displayMonth = '';
   DateTime get selectedDate => _selectedDate;
   List<CleanCalendarEvent>? _selectedEvents;
-
-  get buttonWidget => buttonWidget;
 
   void initState() {
     super.initState();
@@ -469,8 +467,7 @@ class _CalendarState extends State<Calendar> {
             isExpanded: isExpanded,
           ),
           expansionButtonRow,
-          // buttonWidget,
-          Text("hello"),
+           widget.buttonWidget,
           eventList
         ],
       ),
