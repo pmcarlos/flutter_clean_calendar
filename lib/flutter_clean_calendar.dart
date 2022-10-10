@@ -173,9 +173,8 @@ class _CalendarState extends State<Calendar> {
           margin: const EdgeInsets.all(15.0),
           padding: const EdgeInsets.all(3.0),
           decoration: BoxDecoration(
-              color: Color.fromRGBO(244, 245, 247, 1),
-              borderRadius: BorderRadius.all(Radius.circular(45)),
-              border: Border.all(color: Colors.blueAccent)
+              borderRadius: BorderRadius.all(Radius.circular(12)),
+              border: Border.all(color: Color.fromRGBO(184, 184, 184, 1.0))
           ),
           child: Icon(Icons.chevron_left),
         ),
@@ -186,9 +185,8 @@ class _CalendarState extends State<Calendar> {
       margin: const EdgeInsets.all(15.0),
     padding: const EdgeInsets.all(3.0),
     decoration: BoxDecoration(
-      color: Color.fromRGBO(244, 245, 247, 1),
-      borderRadius: BorderRadius.all(Radius.circular(45)),
-    border: Border.all(color: Colors.blueAccent)
+        borderRadius: BorderRadius.all(Radius.circular(12)),
+        border: Border.all(color: Color.fromRGBO(184, 184, 184, 1.0))
     ),
     child: Icon(Icons.chevron_right),
     ),
