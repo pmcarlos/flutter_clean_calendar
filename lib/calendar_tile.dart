@@ -57,7 +57,7 @@ class CalendarTile extends StatelessWidget {
     this.todayColor,
     this.eventColor,
     this.eventDoneColor,
-    this.dateColor
+    required this.dateColor
   });
 
   /// This function [renderDateOrDayOfWeek] renders the week view or the month view. It is
