@@ -410,6 +410,7 @@ class _CalendarState extends State<Calendar> {
                     padding: EdgeInsets.all(5),
                     child: Container(
                       decoration: BoxDecoration(
+                        color: Colors.white,
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey.withOpacity(0.5),
