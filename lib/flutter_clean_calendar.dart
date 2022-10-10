@@ -95,6 +95,7 @@ class Calendar extends StatefulWidget {
   final Color? bottomBarColor;
   final String? expandableDateFormat;
   final Widget buttonWidget;
+  final Color? dateColor;
 
   Calendar({
     this.onMonthChanged,
@@ -124,7 +125,8 @@ class Calendar extends StatefulWidget {
     this.bottomBarArrowColor,
     this.bottomBarColor,
     this.expandableDateFormat = 'EEEE MMMM dd, yyyy',
-    required this.buttonWidget
+    required this.buttonWidget,
+    this.dateColor
   });
 
   @override
@@ -259,6 +261,7 @@ class _CalendarState extends State<Calendar> {
       (day) {
         dayWidgets.add(
           CalendarTile(
+            dateColor: widget.dateColor,
             selectedColor: widget.selectedColor,
             todayColor: widget.todayColor,
             eventColor: widget.eventColor,
