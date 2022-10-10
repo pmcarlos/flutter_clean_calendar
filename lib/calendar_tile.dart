@@ -40,7 +40,7 @@ class CalendarTile extends StatelessWidget {
   final Color? todayColor;
   final Color? eventColor;
   final Color? eventDoneColor;
-  final Color? dateColor;
+  final Color dateColor;
 
   CalendarTile({
     this.onDateSelected,
@@ -115,7 +115,7 @@ class CalendarTile extends StatelessWidget {
                           : Utils.isSameDay(this.date!, DateTime.now())
                               ? todayColor
                               : inMonth
-                                  ? dateColor ?? Theme.of(context).primaryColor
+                                  ? dateColor
                                   : Colors
                                       .grey), // Grey color for previous or next months dates
                 ),
