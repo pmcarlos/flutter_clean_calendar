@@ -218,11 +218,11 @@ class _CalendarState extends State<Calendar> {
             todayIcon ?? Container(),
             Text(
               displayMonth,
-              style: Theme.of(context).textTheme.titleMedium
+              style: Theme.of(context).textTheme.labelLarge
             ),
             Text(
               displayYear,
-            style: Theme.of(context).textTheme.bodyText2
+            style: Theme.of(context).textTheme.headlineMedium
             ),
           ],
         ),
