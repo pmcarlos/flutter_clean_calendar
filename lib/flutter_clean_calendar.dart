@@ -467,7 +467,7 @@ class _CalendarState extends State<Calendar> {
             isExpanded: isExpanded,
           ),
           expansionButtonRow,
-           widget.buttonWidget,
+           Center(child: widget.buttonWidget),
           eventList
         ],
       ),
