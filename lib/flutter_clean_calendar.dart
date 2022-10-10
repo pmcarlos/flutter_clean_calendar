@@ -173,6 +173,8 @@ class _CalendarState extends State<Calendar> {
           margin: const EdgeInsets.all(15.0),
           padding: const EdgeInsets.all(3.0),
           decoration: BoxDecoration(
+              color: Color.fromRGBO(244, 245, 247, 1),
+              borderRadius: BorderRadius.all(Radius.circular(45)),
               border: Border.all(color: Colors.blueAccent)
           ),
           child: Icon(Icons.chevron_left),
@@ -180,7 +182,16 @@ class _CalendarState extends State<Calendar> {
       );
       rightArrow = InkWell(
         onTap: isExpanded ? nextMonth : nextWeek,
-        child: Icon(Icons.chevron_right),
+        child: Container(
+      margin: const EdgeInsets.all(15.0),
+    padding: const EdgeInsets.all(3.0),
+    decoration: BoxDecoration(
+      color: Color.fromRGBO(244, 245, 247, 1),
+      borderRadius: BorderRadius.all(Radius.circular(45)),
+    border: Border.all(color: Colors.blueAccent)
+    ),
+    child: Icon(Icons.chevron_right),
+    ),
       );
     } else {
       leftArrow = Container();
