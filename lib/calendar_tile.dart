@@ -95,7 +95,7 @@ class CalendarTile extends StatelessWidget {
                     //shape: BoxShape.circle,
                     color: selectedColor != null
                         ? Utils.isSameDay(this.date!, DateTime.now())
-                            ? Colors.red
+                            ? Theme.of(context).primaryColor
                             : selectedColor
                         : Theme.of(context).primaryColor,
                   )
