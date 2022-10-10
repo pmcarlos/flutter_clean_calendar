@@ -157,8 +157,8 @@ class _CalendarState extends State<Calendar> {
           var monthFormat =
               DateFormat('MMMM yyyy', widget.locale).format(_selectedDate);
           displayMonth =
-              '${monthFormat[0].toUpperCase()}';
-          displayYear = '${monthFormat.substring(1)}';
+          '${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}'.split(" ")[0];
+          displayYear = '${monthFormat.split(" ")[1]}';
         }));
     _selectedEvents = widget.events?[DateTime(
             _selectedDate.year, _selectedDate.month, _selectedDate.day)] ??
@@ -528,8 +528,8 @@ class _CalendarState extends State<Calendar> {
       var monthFormat =
           DateFormat('MMMM yyyy', widget.locale).format(_selectedDate);
       displayMonth =
-          '${monthFormat[0].toUpperCase()}';
-      displayYear = '${monthFormat.substring(1)}';
+      '${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}'.split(" ")[0];
+      displayYear = '${monthFormat.split(" ")[1]}';
       _selectedEvents = widget.events?[DateTime(
               _selectedDate.year, _selectedDate.month, _selectedDate.day)] ??
           [];
@@ -548,8 +548,8 @@ class _CalendarState extends State<Calendar> {
       var monthFormat =
           DateFormat('MMMM yyyy', widget.locale).format(_selectedDate);
       displayMonth =
-          '${monthFormat[0].toUpperCase()}';
-      displayYear = '${monthFormat.substring(1)}';
+          '${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}'.split(" ")[0];
+      displayYear = '${monthFormat.split(" ")[1]}';
       _selectedEvents = widget.events?[DateTime(
               _selectedDate.year, _selectedDate.month, _selectedDate.day)] ??
           [];
@@ -567,8 +567,9 @@ class _CalendarState extends State<Calendar> {
       var monthFormat =
           DateFormat('MMMM yyyy', widget.locale).format(_selectedDate);
       displayMonth =
-          '${monthFormat[0].toUpperCase()}';
-      displayYear = '${monthFormat.substring(1)}';
+          '${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}'.split(" ")[0];
+      displayYear = '${monthFormat.split(" ")[1]}';
+
       _selectedEvents = widget.events?[DateTime(
               _selectedDate.year, _selectedDate.month, _selectedDate.day)] ??
           [];
@@ -588,8 +589,9 @@ class _CalendarState extends State<Calendar> {
       var monthFormat =
           DateFormat('MMMM yyyy', widget.locale).format(_selectedDate);
       displayMonth =
-          '${monthFormat[0].toUpperCase()}';
-      displayYear = '${monthFormat.substring(1)}';
+      '${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}'.split(" ")[0];
+      displayYear = '${monthFormat.split(" ")[1]}';
+
       _selectedEvents = widget.events?[DateTime(
               _selectedDate.year, _selectedDate.month, _selectedDate.day)] ??
           [];
@@ -609,8 +611,8 @@ class _CalendarState extends State<Calendar> {
       var monthFormat =
           DateFormat('MMMM yyyy', widget.locale).format(_selectedDate);
       displayMonth =
-          '${monthFormat[0].toUpperCase()}';
-      displayYear = '${monthFormat.substring(1)}';
+      '${monthFormat[0].toUpperCase()}${monthFormat.substring(1)}'.split(" ")[0];
+      displayYear = '${monthFormat.split(" ")[1]}';
       _selectedEvents = widget.events?[DateTime(
               _selectedDate.year, _selectedDate.month, _selectedDate.day)] ??
           [];
