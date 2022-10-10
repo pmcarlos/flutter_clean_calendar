@@ -302,6 +302,7 @@ class _CalendarState extends State<Calendar> {
           // Use the dayBuilder widget passed as parameter to render the date tile
           dayWidgets.add(
             CalendarTile(
+              dateColor: widget.dateColor,
               selectedColor: widget.selectedColor,
               todayColor: widget.todayColor,
               eventColor: widget.eventColor,
@@ -315,6 +316,7 @@ class _CalendarState extends State<Calendar> {
         } else {
           dayWidgets.add(
             CalendarTile(
+              dateColor: widget.dateColor,
                 selectedColor: widget.selectedColor,
                 todayColor: widget.todayColor,
                 eventColor: widget.eventColor,
