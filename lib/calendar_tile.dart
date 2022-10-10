@@ -84,7 +84,7 @@ class CalendarTile extends StatelessWidget {
       return InkWell(
         onTap: onDateSelected, // react on tapping
         child: Padding(
-          padding: const EdgeInsets.all(1.0),
+          padding: const EdgeInsets.fromLTRB(3,1,3,1),
           child: Container(
             // If this tile is the selected date, draw a colored circle on it. The circle is filled with
             // the color passed with the selectedColor parameter or red color.
