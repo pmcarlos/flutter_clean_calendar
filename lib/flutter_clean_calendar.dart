@@ -167,13 +167,20 @@ class _CalendarState extends State<Calendar> {
     var rightArrow;
 
     if (!widget.hideArrows) {
-      leftArrow = IconButton(
-        onPressed: isExpanded ? previousMonth : previousWeek,
-        icon: Icon(Icons.chevron_left),
+      leftArrow = InkWell(
+        onTap: isExpanded ? previousMonth : previousWeek,
+        child: Container(
+          margin: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.all(3.0),
+          decoration: BoxDecoration(
+              border: Border.all(color: Colors.blueAccent)
+          ),
+          child: Icon(Icons.chevron_left),
+        ),
       );
-      rightArrow = IconButton(
-        onPressed: isExpanded ? nextMonth : nextWeek,
-        icon: Icon(Icons.chevron_right),
+      rightArrow = InkWell(
+        onTap: isExpanded ? nextMonth : nextWeek,
+        child: Icon(Icons.chevron_right),
       );
     } else {
       leftArrow = Container();
