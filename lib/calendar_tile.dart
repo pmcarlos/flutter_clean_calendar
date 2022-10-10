@@ -90,6 +90,7 @@ class CalendarTile extends StatelessWidget {
             // the color passed with the selectedColor parameter or red color.
             decoration: isSelected && date != null
                 ? BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
                     shape: BoxShape.circle,
                     color: selectedColor != null
                         ? Utils.isSameDay(this.date!, DateTime.now())
