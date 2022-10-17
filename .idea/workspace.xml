@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6fcde690-972e-42ac-a18f-e30d46cd22d6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/flutter_clean_calendar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/flutter_clean_calendar.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +36,9 @@
     <property name="dart.analysis.tool.window.force.activate" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RunManager">
@@ -94,7 +98,245 @@
       <option name="project" value="LOCAL" />
       <updated>1661273712527</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="added text widget and removed expanded from eventList">
+      <created>1665344707883</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1665344707883</updated>
+    </task>
+    <task id="LOCAL-00008" summary="bugfix">
+      <created>1665345493619</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1665345493619</updated>
+    </task>
+    <task id="LOCAL-00009" summary="bugfix">
+      <created>1665345867257</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1665345867257</updated>
+    </task>
+    <task id="LOCAL-00010" summary="bugfix">
+      <created>1665346027553</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1665346027553</updated>
+    </task>
+    <task id="LOCAL-00011" summary="bugfix">
+      <created>1665346179550</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1665346179550</updated>
+    </task>
+    <task id="LOCAL-00012" summary="bugfix">
+      <created>1665346242689</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1665346242689</updated>
+    </task>
+    <task id="LOCAL-00013" summary="bugfix">
+      <created>1665346304441</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1665346304441</updated>
+    </task>
+    <task id="LOCAL-00014" summary="bugfix">
+      <created>1665348570050</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1665348570050</updated>
+    </task>
+    <task id="LOCAL-00015" summary="bugfix">
+      <created>1665348625905</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1665348625905</updated>
+    </task>
+    <task id="LOCAL-00016" summary="bugfix">
+      <created>1665348895227</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1665348895227</updated>
+    </task>
+    <task id="LOCAL-00017" summary="bugfix">
+      <created>1665401647116</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1665401647116</updated>
+    </task>
+    <task id="LOCAL-00018" summary="bugfix">
+      <created>1665406314734</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1665406314734</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Added border for icons that change months">
+      <created>1665408858266</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1665408858267</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Added border for icons that change months">
+      <created>1665409235821</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1665409235821</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Added border for icons that change months">
+      <created>1665410063000</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1665410063000</updated>
+    </task>
+    <task id="LOCAL-00022" summary="changed selected date border type">
+      <created>1665410340077</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1665410340077</updated>
+    </task>
+    <task id="LOCAL-00023" summary="changed selected date border type">
+      <created>1665410404470</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1665410404470</updated>
+    </task>
+    <task id="LOCAL-00024" summary="changed selected date border type">
+      <created>1665413096516</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1665413096516</updated>
+    </task>
+    <task id="LOCAL-00025" summary="changed selected date border type">
+      <created>1665424494641</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1665424494641</updated>
+    </task>
+    <task id="LOCAL-00026" summary="color bugfix">
+      <created>1665425456737</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1665425456737</updated>
+    </task>
+    <task id="LOCAL-00027" summary="color bugfix">
+      <created>1665426045383</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1665426045383</updated>
+    </task>
+    <task id="LOCAL-00028" summary="color bugfix">
+      <created>1665426101732</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1665426101732</updated>
+    </task>
+    <task id="LOCAL-00029" summary="color bugfix">
+      <created>1665426234452</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1665426234452</updated>
+    </task>
+    <task id="LOCAL-00030" summary="color bugfix">
+      <created>1665426372142</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1665426372142</updated>
+    </task>
+    <task id="LOCAL-00031" summary="color bugfix">
+      <created>1665426872176</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1665426872176</updated>
+    </task>
+    <task id="LOCAL-00032" summary="color bugfix">
+      <created>1665427276066</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1665427276066</updated>
+    </task>
+    <task id="LOCAL-00033" summary="color bugfix">
+      <created>1665428580344</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1665428580344</updated>
+    </task>
+    <task id="LOCAL-00034" summary="color bugfix">
+      <created>1665428609972</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1665428609972</updated>
+    </task>
+    <task id="LOCAL-00035" summary="color bugfix">
+      <created>1665428691952</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1665428691952</updated>
+    </task>
+    <task id="LOCAL-00036" summary="color bugfix">
+      <created>1665436456076</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1665436456076</updated>
+    </task>
+    <task id="LOCAL-00037" summary="color bugfix">
+      <created>1665439596312</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1665439596312</updated>
+    </task>
+    <task id="LOCAL-00038" summary="bugfix">
+      <created>1665440010476</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1665440010476</updated>
+    </task>
+    <task id="LOCAL-00039" summary="bugfix">
+      <created>1665440457769</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1665440457769</updated>
+    </task>
+    <task id="LOCAL-00040" summary="bugfix">
+      <created>1665440933383</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1665440933383</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -118,17 +360,11 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="changes for debuging" />
     <MESSAGE value="Hopefully fixed all bugs and removed prints()" />
-    <option name="LAST_COMMIT_MESSAGE" value="Hopefully fixed all bugs and removed prints()" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/calendar_tile.dart</url>
-          <line>115</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="added text widget and removed expanded from eventList" />
+    <MESSAGE value="Added border for icons that change months" />
+    <MESSAGE value="changed selected date border type" />
+    <MESSAGE value="color bugfix" />
+    <MESSAGE value="bugfix" />
+    <option name="LAST_COMMIT_MESSAGE" value="bugfix" />
   </component>
 </project>
