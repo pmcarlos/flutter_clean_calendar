@@ -404,7 +404,7 @@ class _CalendarState extends State<Calendar> {
     if (widget.eventListBuilder == null) {
       return _selectedEvents != null && _selectedEvents!.isNotEmpty
           ? ListView.builder(
-        physics: NeverScrollableScrollPhysics(),
+              physics: NeverScrollableScrollPhysics(),
               padding: EdgeInsets.all(0.0),
               itemBuilder: (BuildContext context, int index) {
                 final CleanCalendarEvent event = _selectedEvents![index];
