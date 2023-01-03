@@ -403,88 +403,85 @@ class _CalendarState extends State<Calendar> {
   Widget get eventList {
     if (widget.eventListBuilder == null) {
       return _selectedEvents != null && _selectedEvents!.isNotEmpty
-          ? Expanded(
-            child: ListView.builder( 
-                physics: NeverScrollableScrollPhysics(),
-                padding: EdgeInsets.all(0.0),
-                itemBuilder: (BuildContext context, int index) {
-                  final CleanCalendarEvent event = _selectedEvents![index];
-                  final String start =
-                      DateFormat('HH:mm').format(event.startTime).toString();
-                  return Padding(
-                    padding: EdgeInsets.all(5),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.1),
-                            spreadRadius: 2,
-                            blurRadius: 3,
-                            offset: Offset(0, 2), // changes position of shadow
+          ? ListView.builder(
+              padding: EdgeInsets.all(0.0),
+              itemBuilder: (BuildContext context, int index) {
+                final CleanCalendarEvent event = _selectedEvents![index];
+                final String start =
+                    DateFormat('HH:mm').format(event.startTime).toString();
+                return Padding(
+                  padding: EdgeInsets.all(5),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.1),
+                          spreadRadius: 2,
+                          blurRadius: 3,
+                          offset: Offset(0, 2), // changes position of shadow
+                        ),
+                      ],
+                    ),
+                    height: 60.0,
+                    child: InkWell(
+                      onTap: () {
+                        if (widget.onEventSelected != null) {
+                          widget.onEventSelected!(event);
+                        }
+                      },
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Expanded(
+                            flex: 5,
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Container(
+                                color: event.color,
+                              ),
+                            ),
                           ),
+                          Expanded(
+                            flex: 75,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(event.summary,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .subtitle2)
+                                ],
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 20,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(start,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText1),
+                                ],
+                              ),
+                            ),
+                          )
                         ],
                       ),
-                      height: 60.0,
-                      child: InkWell(
-                        onTap: () {
-                          if (widget.onEventSelected != null) {
-                            widget.onEventSelected!(event);
-                          }
-                        },
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            Expanded(
-                              flex: 5,
-                              child: Padding(
-                                padding: const EdgeInsets.all(4.0),
-                                child: Container(
-                                  color: event.color,
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 75,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(event.summary,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .subtitle2)
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 20,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(start,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText1),
-                                  ],
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
                     ),
-                  );
-                },
-                itemCount: _selectedEvents!.length,
-              ),
-          )
+                  ),
+                );
+              },
+              itemCount: _selectedEvents!.length,
+            )
           : Container();
     } else {
       // eventListBuilder is not null
