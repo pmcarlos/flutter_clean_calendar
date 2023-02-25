@@ -356,7 +356,21 @@
       <option name="project" value="LOCAL" />
       <updated>1672737521032</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="updated dependencies">
+      <created>1677246620026</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1677246620026</updated>
+    </task>
+    <task id="LOCAL-00045" summary="updated dependencies">
+      <created>1677246865595</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1677246865595</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -386,6 +400,7 @@
     <MESSAGE value="color bugfix" />
     <MESSAGE value="bugfix" />
     <MESSAGE value="changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes" />
+    <MESSAGE value="updated dependencies" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated dependencies" />
   </component>
 </project>
