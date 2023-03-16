@@ -404,6 +404,7 @@ class _CalendarState extends State<Calendar> {
     if (widget.eventListBuilder == null) {
       return _selectedEvents != null && _selectedEvents!.isNotEmpty
           ? Column(
+        mainAxisSize: MainAxisSize.min,
             children: [
               ListView.builder(
                 shrinkWrap: true,
