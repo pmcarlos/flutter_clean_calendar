@@ -406,6 +406,7 @@ class _CalendarState extends State<Calendar> {
           ? Column(
             children: [
               ListView.builder(
+                shrinkWrap: true,
                   padding: EdgeInsets.all(0.0),
                   itemBuilder: (BuildContext context, int index) {
                     final CleanCalendarEvent event = _selectedEvents![index];
