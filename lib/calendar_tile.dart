@@ -48,9 +48,9 @@ class CalendarTile extends StatelessWidget {
     this.dateStyles,
     this.dayOfWeek,
     this.dayOfWeekStyle,
-    this.isDayOfWeek: false,
-    this.isSelected: false,
-    this.inMonth: true,
+    this.isDayOfWeek = false,
+    this.isSelected = false,
+    this.inMonth = true,
     this.events,
     this.selectedColor,
     this.todayColor,
@@ -142,7 +142,7 @@ class CalendarTile extends StatelessWidget {
                                         Theme.of(context).primaryColor;
                                   if (isSelected) return Colors.white;
                                   return eventColor ??
-                                      Theme.of(context).accentColor;
+                                      Theme.of(context).colorScheme.secondary;
                                 }())),
                           );
                         }).toList())
